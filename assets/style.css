@@ -296,7 +296,8 @@ img { max-width: 100%; display: block; }
 
 /* Ashrit's surprise video (revealed after 3 attempts) */
 .game-video { margin: 1.3rem auto 0; max-width: 440px; border-radius: 16px; overflow: hidden; border: 1px solid color-mix(in oklab, var(--gold) 45%, transparent); box-shadow: 0 10px 26px oklch(0.4 0.05 60 / .16); animation: pop-in .5s cubic-bezier(.34,1.4,.64,1); }
-.game-video video { width: 100%; display: block; background: #000; }
+.game-video video, .game-video iframe { width: 100%; display: block; background: #000; border: 0; }
+.game-video iframe { aspect-ratio: 16 / 9; }
 @keyframes pop-in { from { opacity: 0; transform: scale(.9); } to { opacity: 1; transform: none; } }
 
 /* ---------- Footer ---------- */

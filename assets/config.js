@@ -74,7 +74,7 @@ window.CONFIG = {
     winEmoji: "😎",                          // sunglasses mascot on win
     // Ashrit reactions, shown in this exact order on 1st, 2nd, 3rd attempt:
     sadSequence: ["Hehe dhabbu moyy 😝", "Aga aga Aai 😭", "Nahi nah moyy plissh 🥺"],
-    video: "photos/ashrit.mp4",             // shown in the card after 3 Ashrit attempts
+    video: "https://www.youtube.com/watch?v=WGbht0WtGGE",  // shown after 3 Ashrit attempts (YouTube link or local mp4 path)
     resetMs: 150000,                        // auto-reset the game after ~2.5 minutes
   },
 

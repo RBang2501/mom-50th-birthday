@@ -205,9 +205,19 @@
       hideVideo();
       tries = 0;
     }
+    function ytId(u) {
+      var m = String(u).match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/)([A-Za-z0-9_-]{11})/);
+      if (m) return m[1];
+      return /^[A-Za-z0-9_-]{11}$/.test(u) ? u : "";
+    }
     function showVideo() {
       if (!video || !cfg.video || video.dataset.loaded) return;
-      video.innerHTML = '<video src="' + cfg.video + '" autoplay muted loop playsinline controls preload="metadata"></video>';
+      var id = ytId(cfg.video);
+      if (id) {
+        video.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&playsinline=1&rel=0" title="A message for Mom" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+      } else {
+        video.innerHTML = '<video src="' + esc(cfg.video) + '" autoplay muted loop playsinline controls preload="metadata"></video>';
+      }
       video.dataset.loaded = "1"; video.hidden = false;
     }
     function hideVideo() { if (video) { video.hidden = true; video.innerHTML = ""; delete video.dataset.loaded; } }
