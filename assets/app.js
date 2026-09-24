@@ -30,6 +30,7 @@
     renderGalleries();
     renderCarousels();
     renderWishes();
+    setupLightbox();
     setupCake();
     setupLekruGame();
     setupWall();
@@ -68,8 +69,7 @@
   function injectFooter() {
     var f = document.createElement("footer");
     f.className = "foot";
-    f.innerHTML = "<p>Made with <span class='heart'>&hearts;</span> for the best mom in the world.</p>" +
-      "<p style='font-size:.9rem'>" + esc(C.signoff || "") + "</p>";
+    f.innerHTML = "<p>Made with <span class='heart'>&hearts;</span> for the best mom in the world.</p>";
     document.body.appendChild(f);
   }
 
@@ -105,9 +105,87 @@
     $$("[data-timeline]").forEach(function (ol) {
       var items = C[ol.getAttribute("data-timeline")] || [];
       ol.innerHTML = items.map(function (t) {
-        return '<li class="t-item reveal"><div class="t-year">' + esc(t.year) + '</div>' +
-          '<h3 class="t-title">' + esc(t.title) + '</h3><p class="t-body">' + esc(t.body) + "</p></li>";
+        var inner;
+        if (!t.src) {
+          inner = '<span class="t-ph">Add photo</span>';
+        } else {
+          var isVideo = t.type === "video" || /\.(mp4|mov|webm|m4v)(\?|#|$)/i.test(t.src);
+          var thumb = isVideo
+            ? '<video src="' + esc(t.src) + '#t=0.1" muted playsinline preload="metadata"></video><span class="t-play" aria-hidden="true"></span>'
+            : '<img src="' + esc(t.src) + '" alt="" loading="lazy" />';
+          inner = '<button type="button" class="t-open" data-kind="' + (isVideo ? "video" : "image") + '"' +
+            ' data-full="' + esc(t.src) + '" data-title="' + esc(t.title || "") + '" data-msg="' + esc(t.msg || "") + '"' +
+            ' aria-label="Open ' + (isVideo ? "video" : "photo") + '">' + thumb + "</button>";
+        }
+        return '<li class="t-item reveal">' +
+          '<figure class="t-photo">' + inner + "</figure>" +
+          '<span class="t-node" aria-hidden="true"></span>' +
+        "</li>";
       }).join("");
+    });
+  }
+
+  /* ---------- Royal lightbox card (tap a tree photo/video to open) ---------- */
+  function setupLightbox() {
+    var box = document.createElement("div");
+    box.className = "lightbox";
+    box.hidden = true;
+    box.innerHTML =
+      '<div class="lb-backdrop"></div>' +
+      '<figure class="lb-card" role="dialog" aria-modal="true" aria-label="Moment">' +
+        '<button type="button" class="lb-close" aria-label="Close">&times;</button>' +
+        '<div class="lb-media"></div>' +
+        '<h3 class="lb-title" hidden></h3>' +
+        '<div class="lb-divider" aria-hidden="true" hidden><span></span><i></i><span></span></div>' +
+        '<p class="lb-msg" hidden></p>' +
+      "</figure>";
+    document.body.appendChild(box);
+    var media = box.querySelector(".lb-media");
+    var titleEl = box.querySelector(".lb-title");
+    var divEl = box.querySelector(".lb-divider");
+    var msgEl = box.querySelector(".lb-msg");
+
+    function stopMedia() {
+      var v = media.querySelector("video");
+      if (v) { try { v.pause(); } catch (e) {} }
+      media.innerHTML = "";
+    }
+    function open(kind, src, title, text) {
+      stopMedia();
+      if (kind === "video") {
+        media.innerHTML = '<video src="' + esc(src) + '" controls autoplay playsinline preload="auto"></video>';
+        var v = media.querySelector("video");
+        if (v) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); }
+      } else {
+        media.innerHTML = '<img src="' + esc(src) + '" alt="' + esc(title || "") + '" />';
+      }
+      if (title) { titleEl.textContent = title; titleEl.hidden = false; }
+      else { titleEl.textContent = ""; titleEl.hidden = true; }
+      if (text) { msgEl.textContent = text; msgEl.hidden = false; }
+      else { msgEl.textContent = ""; msgEl.hidden = true; }
+      divEl.hidden = !(title || text);
+      box.hidden = false;
+      document.body.classList.add("lb-open");
+      box.querySelector(".lb-close").focus();
+    }
+    function close() {
+      stopMedia();
+      box.hidden = true;
+      document.body.classList.remove("lb-open");
+    }
+
+    document.addEventListener("click", function (e) {
+      var t = e.target;
+      var btn = t.closest && t.closest(".t-open");
+      if (btn) {
+        open(btn.getAttribute("data-kind"), btn.getAttribute("data-full"),
+             btn.getAttribute("data-title"), btn.getAttribute("data-msg"));
+        return;
+      }
+      if (t.closest && (t.closest(".lb-close") || (t.classList && t.classList.contains("lb-backdrop")))) close();
+    });
+    document.addEventListener("keydown", function (e) {
+      if ((e.key === "Escape" || e.key === "Esc") && !box.hidden) close();
     });
   }
 
@@ -184,63 +262,114 @@
     });
   }
 
-  /* ---------- Best Lekru game (Ashrit's button runs away) ---------- */
+  /* ---------- Best Lekru game → winner reveal → framed certificate ---------- */
   function setupLekruGame() {
     var game = $("#lekru-game"); if (!game) return;
     var cfg = C.lekruGame || {};
-    var arena = $("#arena"), mascot = $("#game-mascot"), result = $("#game-result");
+    var play = $("#game-play"), arena = $("#arena"), mascot = $("#game-mascot"), result = $("#game-result");
     var best = $("#vote-best"), other = $("#vote-other");
+    var video = $("#game-video"), cta = $("#reveal-cta"), cert = $("#game-cert"), replay = $("#game-replay");
     if (cfg.best) best.textContent = cfg.best;
     if (cfg.other) other.textContent = cfg.other;
     var seq = cfg.sadSequence && cfg.sadSequence.length ? cfg.sadSequence : ["Hehe dhabbu moyy 😝", "Aga aga Aai 😭", "Nahi nah moyy plissh 🥺"];
-    var video = $("#game-video");
-    var tries = 0, resetTimer = null, resetMs = cfg.resetMs || 150000;
+    var winners = cfg.winners || {};
+    var certTitle = cfg.certTitle || "Best Lekru";
+    var tries = 0, decided = false, resetTimer = null, resetMs = cfg.resetMs || 150000;
 
-    function scheduleReset() { clearTimeout(resetTimer); resetTimer = setTimeout(resetGame, resetMs); }
-    function resetGame() {
+    function ytId(u) {
+      var m = String(u || "").match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/)([A-Za-z0-9_-]{11})/);
+      if (m) return m[1];
+      return /^[A-Za-z0-9_-]{11}$/.test(u) ? u : "";
+    }
+    function scheduleReset() { clearTimeout(resetTimer); resetTimer = setTimeout(replayGame, resetMs); }
+
+    function replayGame() {
+      clearTimeout(resetTimer);
+      decided = false; tries = 0; lastTry = 0;
+      cert.hidden = true; cert.innerHTML = ""; cert.classList.remove("show");
+      replay.hidden = true;
+      play.hidden = false;
+      arena.classList.remove("gone");
       mascot.textContent = "🙂"; mascot.className = "game-mascot";
       best.classList.remove("crowned");
       other.classList.remove("runaway"); other.style.transition = ""; other.style.transform = "";
       result.className = "game-result"; result.innerHTML = "";
-      hideVideo();
-      tries = 0;
+      video.hidden = true; video.innerHTML = ""; delete video.dataset.loaded;
+      cta.hidden = true; cta.innerHTML = "";
     }
-    function ytId(u) {
-      var m = String(u).match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/)([A-Za-z0-9_-]{11})/);
-      if (m) return m[1];
-      return /^[A-Za-z0-9_-]{11}$/.test(u) ? u : "";
-    }
-    function showVideo() {
-      if (!video || !cfg.video || video.dataset.loaded) return;
-      video.dataset.loaded = "1"; video.hidden = false;
-      var id = ytId(cfg.video);
+
+    function showVideoCard(url) {
+      video.hidden = false;
+      var id = ytId(url);
       if (id) {
-        // Poster + play button. Tapping it is a user gesture, so it plays WITH sound.
         var thumb = "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg";
-        video.innerHTML = '<button class="video-play" type="button" style="background-image:url(' + thumb + ')" aria-label="Play the message with sound">' +
+        video.innerHTML = '<button class="video-play" type="button" style="background-image:url(' + thumb + ')" aria-label="Play the video with sound">' +
           '<span class="video-play-btn">►</span><span class="video-play-label">Tap to play with sound</span></button>';
         video.querySelector(".video-play").addEventListener("click", function () {
-          video.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&playsinline=1&rel=0" title="A message for Mom" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+          video.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&playsinline=1&rel=0" title="A message" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
         });
+      } else if (url) {
+        video.innerHTML = '<video src="' + esc(url) + '" playsinline controls preload="metadata"></video>';
       } else {
-        video.innerHTML = '<video src="' + esc(cfg.video) + '" playsinline controls preload="metadata"></video>';
+        video.hidden = true;
       }
     }
-    function hideVideo() { if (video) { video.hidden = true; video.innerHTML = ""; delete video.dataset.loaded; } }
 
-    // Rakshit wins.
-    best.addEventListener("click", function () {
-      mascot.textContent = cfg.winEmoji || "😎"; mascot.className = "game-mascot happy";
-      best.classList.add("crowned");
-      result.className = "game-result win";
-      result.innerHTML = '<span class="win-main">' + esc(cfg.bestResult || "👑 Best Lekru!") + "</span>" +
-        (cfg.bestSub ? '<span class="sub">' + esc(cfg.bestSub) + "</span>" : "");
-      hideVideo();
-      fireConfetti();
+    function declareWinner(key) {
+      if (decided) return; decided = true;
+      var w = winners[key] || {};
+      var happy = (w.mood || "happy") !== "sad";
+      arena.classList.add("gone");            // retire the buttons
+      best.classList.remove("crowned");
+      if (happy) {
+        mascot.textContent = "😎"; mascot.className = "game-mascot happy";
+        result.className = "game-result win";
+        result.innerHTML = '<span class="win-main">👑 ' + esc(certTitle) + "!</span>" +
+          (cfg.winSub ? '<span class="sub">' + esc(cfg.winSub) + "</span>" : "");
+        fireConfetti();
+      } else {
+        mascot.textContent = "😭"; mascot.className = "game-mascot sad";
+        result.className = "game-result aww";   // keep the last cry line already shown
+      }
+      showVideoCard(w.video);
+      cta.hidden = false;
+      cta.innerHTML = '<button class="btn gold reveal-btn" type="button">Reveal the ' + esc(certTitle) + " certificate ✨</button>";
+      cta.querySelector("button").addEventListener("click", function () { revealCertificate(key); });
       scheduleReset();
-    });
+    }
 
-    // Ashrit glides away smoothly and can't be caught. Reacts with a cry line.
+    function revealCertificate(key) {
+      var w = winners[key] || {};
+      var happy = (w.mood || "happy") !== "sad";
+      var photo = w.photo
+        ? '<img src="' + esc(w.photo) + '" alt="' + esc(w.name || "") + '" onerror="this.style.display=&quot;none&quot;" />'
+        : '<span class="cert-ph">☺</span>';
+      cert.innerHTML =
+        '<div class="cert" data-mood="' + (happy ? "happy" : "sad") + '">' +
+          '<span class="cert-corner tl"></span><span class="cert-corner tr"></span>' +
+          '<span class="cert-corner bl"></span><span class="cert-corner br"></span>' +
+          '<p class="cert-kicker">Certificate of</p>' +
+          '<h3 class="cert-title">' + esc(certTitle) + "</h3>" +
+          '<div class="cert-photo">' + photo + "</div>" +
+          '<p class="cert-awarded">is proudly awarded to</p>' +
+          '<div class="cert-name script">' + esc(w.name || "") + "</div>" +
+          '<div class="cert-rule"><span></span><i></i><span></span></div>' +
+          '<p class="cert-foot">Golden Jubilee · Est. ' + esc(C.estYear || "1976") + "</p>" +
+          '<div class="cert-seal" aria-hidden="true">★</div>' +
+        "</div>";
+      play.hidden = true;
+      cert.hidden = false;
+      void cert.offsetWidth;                  // flush before animating
+      cert.classList.add("show");
+      replay.hidden = false;
+      if (happy) { fireConfetti(); setTimeout(fireConfetti, 550); }
+      scheduleReset();
+    }
+
+    // Rakshit wins on click.
+    best.addEventListener("click", function () { declareWinner("rakshit"); });
+
+    // Ashrit's button glides away and can't be caught; after 3 tries he "wins" (sad finale).
     function moveAway(avoidX, avoidY) {
       var a = arena.getBoundingClientRect();
       var bw = other.offsetWidth || 120, bh = other.offsetHeight || 50;
@@ -259,25 +388,24 @@
       other.style.transition = "none";
       other.classList.add("runaway");
       other.style.transform = "translate(" + (r.left - a.left) + "px," + (r.top - a.top) + "px)";
-      void other.offsetWidth;            // flush so the next move animates smoothly
+      void other.offsetWidth;
       other.style.transition = "";
     }
     var lastMove = 0, lastTry = 0;
     function dodge(x, y) {
+      if (decided) return;
       goRunaway();
       var now = Date.now();
       if (now - lastMove > 80) { moveAway(x, y); lastMove = now; }
       mascot.textContent = "😭"; mascot.className = "game-mascot sad";
       best.classList.remove("crowned");
-      // Count a genuine attempt at most ~once per 0.7s, and advance the sequence.
       if (now - lastTry > 700) {
-        lastTry = now;
-        tries++;
+        lastTry = now; tries++;
         result.className = "game-result aww";
         result.textContent = seq[Math.min(tries - 1, seq.length - 1)] || "";
-        if (tries >= 3) showVideo();
+        if (tries >= 3) declareWinner("ashrit");
       }
-      scheduleReset();
+      if (!decided) scheduleReset();
     }
     ["pointerenter", "pointerdown", "focus", "touchstart"].forEach(function (ev) {
       other.addEventListener(ev, function (e) {
@@ -288,11 +416,13 @@
       }, { passive: false });
     });
     other.addEventListener("click", function (e) { e.preventDefault(); dodge(e.clientX, e.clientY); });
-    // Desktop: dart away as the cursor gets close — alive and uncatchable.
     arena.addEventListener("mousemove", function (e) {
+      if (decided) return;
       var r = other.getBoundingClientRect();
       if (Math.hypot(e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2)) < 95) dodge(e.clientX, e.clientY);
     });
+
+    replay.addEventListener("click", replayGame);
   }
 
   /* ---------- Cake ---------- */

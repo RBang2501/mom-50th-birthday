@@ -26,17 +26,22 @@
 
     <!-- The Best Lekru game -->
     <section id="lekru-game" class="game reveal" aria-label="Best Lekru game">
-      <div class="center">
-        <p class="eyebrow">Settle it once and for all</p>
-        <h2 class="page-title" style="font-size:var(--step-2);">Who is the <em>Best Lekru?</em> 🏆</h2>
+      <button class="game-replay" id="game-replay" type="button" hidden>↻ Replay</button>
+      <div class="game-play" id="game-play">
+        <div class="center">
+          <p class="eyebrow">Settle it once and for all</p>
+          <h2 class="page-title" style="font-size:var(--step-2);">Who is the <em>Best Lekru?</em> 🏆</h2>
+        </div>
+        <div class="game-mascot" id="game-mascot" aria-hidden="true">🙂</div>
+        <div class="arena" id="arena">
+          <button class="vote best" id="vote-best" type="button">Rakshit</button>
+          <button class="vote other" id="vote-other" type="button">Ashrit</button>
+        </div>
+        <p class="game-result" id="game-result" role="status" aria-live="polite"></p>
+        <div class="game-video" id="game-video" hidden></div>
+        <div class="reveal-cta" id="reveal-cta" hidden></div>
       </div>
-      <div class="game-mascot" id="game-mascot" aria-hidden="true">🙂</div>
-      <div class="arena" id="arena">
-        <button class="vote best" id="vote-best" type="button">Rakshit</button>
-        <button class="vote other" id="vote-other" type="button">Ashrit</button>
-      </div>
-      <p class="game-result" id="game-result" role="status" aria-live="polite"></p>
-      <div class="game-video" id="game-video" hidden></div>
+      <div class="game-cert" id="game-cert" hidden></div>
     </section>
   </section>
 </main>

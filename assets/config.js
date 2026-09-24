@@ -28,25 +28,28 @@ window.CONFIG = {
   // PHOTO SECTIONS — put images in /photos and list them here.
   // Leave src:"" to show a labelled placeholder tile.
   // ================================================================
-  bachpanStory: [   // childhood — shown as a little timeline on bachpan.html
-    { year: "1976", title: "The beginning", body: "The day the world got a little brighter. (Add her birth story.)" },
-    { year: "1982", title: "First day of school", body: "Ribbons, a giant bag, and that unstoppable smile." },
-    { year: "1990", title: "Growing up", body: "A favourite childhood memory goes here." },
+  // "Lil Girl" cards on bachpan.html — two royal cards, one per screen. Each shows
+  // the photo on top, a cursive title, a gold divider, then the message.
+  // Placeholder text for now — replace title/msg with the real words.
+  bachpanStory: [
+    { src: "photos/bachpan1.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/bachpan2.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
   ],
-  bachpan: [        // childhood photos
+  bachpan: [        // (unused) old album grid — childhood photos now live in bachpanStory above
     { src: "", cap: "Baby days" },
     { src: "", cap: "School days" },
     { src: "", cap: "With her parents" },
     { src: "", cap: "The cheeky one" },
   ],
 
-  cuteMoments: [    // cute moments
-    { src: "", cap: "That laugh" },
-    { src: "", cap: "Caught mid-dance" },
-    { src: "", cap: "Her happy place" },
-    { src: "", cap: "Golden hour" },
-    { src: "", cap: "The famous pose" },
-    { src: "", cap: "Pure joy" },
+  // Cute Moments tree on cute-moments.html — photos & videos alternating down a
+  // center line. Tap one to open the royal card (media on top, then a cursive
+  // title + message you'll add later). type: "video" or "image".
+  cuteMoments: [
+    { type: "video", src: "photos/cute-laugh.mp4", title: "Title here", msg: "Message here — add the story behind this moment." },
+    { type: "image", src: "photos/cutu.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
+    { type: "video", src: "photos/golden-hour.mp4", title: "Title here", msg: "Message here — add the story behind this moment." },
+    { type: "video", src: "photos/control-majnu.mp4", title: "Title here", msg: "Message here — add the story behind this moment." },
   ],
 
   family: [         // family corner
@@ -69,13 +72,17 @@ window.CONFIG = {
   lekruGame: {
     best: "Rakshit",
     other: "Ashrit",
-    bestResult: "👑 Best Lekru!",
-    bestSub: "Mujhe Thaaankuuu Moyyyy !",   // second line shown on win
-    winEmoji: "😎",                          // sunglasses mascot on win
+    certTitle: "Best Lekru",
+    winSub: "Thaaankuuu Moyyyy !",          // second line shown on Rakshit's win
     // Ashrit reactions, shown in this exact order on 1st, 2nd, 3rd attempt:
     sadSequence: ["Hehe dhabbu moyy 😝", "Aga aga Aai 😭", "Nahi nah moyy plissh 🥺"],
-    video: "https://www.youtube.com/watch?v=WGbht0WtGGE",  // shown after 3 Ashrit attempts (YouTube link or local mp4 path)
     resetMs: 150000,                        // auto-reset the game after ~2.5 minutes
+    // Each outcome: a video (YouTube or local mp4) then a photo that forms a framed certificate.
+    // Drop the two photos in /photos with EXACTLY these names (or change the paths):
+    winners: {
+      rakshit: { name: "Rakshit", mood: "happy", video: "https://www.youtube.com/shorts/5M019f91XeM", photo: "photos/rakshit-win.jpg" },
+      ashrit:  { name: "Ashrit",  mood: "sad",   video: "https://www.youtube.com/watch?v=WGbht0WtGGE", photo: "photos/ashrit-win.jpg" },
+    },
   },
 
   // ================================================================
