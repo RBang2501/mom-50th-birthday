@@ -52,6 +52,13 @@ window.CONFIG = {
     { type: "video", src: "photos/control-majnu.mp4", title: "Title here", msg: "Message here — add the story behind this moment." },
   ],
 
+  // New tabs — royal-card pages (one card per entry). Add { src, title, msg }.
+  // For a video card add type:"video". Leave a section empty → shows "Coming soon".
+  collegeTime: [],   // College Time
+  northSouth: [],    // North & South (the marriage chapter)
+  friends: [],       // Friends
+  gift: [],          // Gift
+
   family: [         // family corner
     { src: "", cap: "The whole gang" },
     { src: "", cap: "With Dad" },
@@ -102,6 +109,6 @@ window.CONFIG = {
 
   // ---- Editable labels for the section pages ----
   labels: {
-    lekrus: { title: "Mom's Lekrus", eyebrow: "Rakshit & Ashrit", lead: "Kohinoor & Tanishq" },
+    lekrus: { title: "Mom's Lekrus", eyebrow: "Rakshit & Ashrit", lead: "When North met South, they got East & West" },
   },
 };

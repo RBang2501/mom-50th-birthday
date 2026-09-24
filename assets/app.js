@@ -14,12 +14,15 @@
 
   // Pages in the top nav (share.html is intentionally excluded).
   var NAV = [
-    { href: "index.html", label: "Home" },
     { href: "bachpan.html", label: "Lil Girl" },
-    { href: "cute-moments.html", label: "Cute Moments" },
-    { href: "family-corner.html", label: "Family Corner" },
-    { href: "lekrus.html", label: (C.labels && C.labels.lekrus && C.labels.lekrus.title) || "Lekru's" },
-    { href: "memories.html", label: "Memories" },
+    { href: "college.html", label: "College Time" },
+    { href: "north-south.html", label: "North & South" },
+    { href: "lekrus.html", label: (C.labels && C.labels.lekrus && C.labels.lekrus.title) || "Mom's Lekrus" },
+    { href: "family-corner.html", label: "Family" },
+    { href: "friends.html", label: "Friends" },
+    { href: "cute-moments.html", label: "Fun Moments" },
+    { href: "memories.html", label: "Yearbook" },
+    { href: "gift.html", label: "Gift" },
   ];
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -130,7 +133,7 @@
   function renderCardStacks() {
     $$("[data-cards]").forEach(function (box) {
       var items = C[box.getAttribute("data-cards")] || [];
-      box.innerHTML = items.map(function (t) {
+      var html = items.map(function (t) {
         if (!t.src) return "";
         var isVideo = t.type === "video" || /\.(mp4|mov|webm|m4v)(\?|#|$)/i.test(t.src);
         var media = isVideo
@@ -143,6 +146,7 @@
           '<div class="lb-media">' + media + "</div>" + title + divider + msg +
         "</figure></div>";
       }).join("");
+      box.innerHTML = html || '<p class="empty-note">Coming soon 💛</p>';
     });
   }
 
