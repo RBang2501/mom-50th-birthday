@@ -212,13 +212,19 @@
     }
     function showVideo() {
       if (!video || !cfg.video || video.dataset.loaded) return;
+      video.dataset.loaded = "1"; video.hidden = false;
       var id = ytId(cfg.video);
       if (id) {
-        video.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&mute=1&playsinline=1&rel=0" title="A message for Mom" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+        // Poster + play button. Tapping it is a user gesture, so it plays WITH sound.
+        var thumb = "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg";
+        video.innerHTML = '<button class="video-play" type="button" style="background-image:url(' + thumb + ')" aria-label="Play the message with sound">' +
+          '<span class="video-play-btn">►</span><span class="video-play-label">Tap to play with sound</span></button>';
+        video.querySelector(".video-play").addEventListener("click", function () {
+          video.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&playsinline=1&rel=0" title="A message for Mom" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+        });
       } else {
-        video.innerHTML = '<video src="' + esc(cfg.video) + '" autoplay muted loop playsinline controls preload="metadata"></video>';
+        video.innerHTML = '<video src="' + esc(cfg.video) + '" playsinline controls preload="metadata"></video>';
       }
-      video.dataset.loaded = "1"; video.hidden = false;
     }
     function hideVideo() { if (video) { video.hidden = true; video.innerHTML = ""; delete video.dataset.loaded; } }
 

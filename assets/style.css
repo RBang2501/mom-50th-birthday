@@ -3,25 +3,26 @@
    Mobile-first. Ivory paper · sepia ink · leaf gold · regal wine.
    ================================================================= */
 :root {
-  --paper:    oklch(0.975 0.010 88);
-  --paper-2:  oklch(0.950 0.014 85);
-  --paper-3:  oklch(0.922 0.020 84);
-  --ink:      oklch(0.245 0.020 62);
-  --ink-2:    oklch(0.445 0.022 64);
-  --gold:     oklch(0.735 0.092 85);   /* antique / champagne gold, not candy */
-  --gold-2:   oklch(0.845 0.070 90);
-  --gold-deep:oklch(0.595 0.090 74);
-  --wine:     oklch(0.400 0.100 18);
-  --wine-2:   oklch(0.520 0.110 22);
-  --mute:     oklch(0.820 0.014 80);
-  --hair:     color-mix(in oklab, var(--gold-deep) 26%, transparent);  /* elegant gold hairline */
-  --shadow:   0 10px 30px -12px oklch(0.35 0.04 60 / 0.28);            /* soft, diffuse */
+  /* Rich jewel-velvet base — deep rose-wine + emerald, warm cream text, gold metal */
+  --paper:    oklch(0.205 0.032 350);   /* deep velvet base (page bg) */
+  --paper-2:  oklch(0.258 0.040 348);   /* raised card panel */
+  --paper-3:  oklch(0.305 0.046 344);   /* higher panel / placeholder */
+  --ink:      oklch(0.948 0.018 90);     /* warm cream text */
+  --ink-2:    oklch(0.815 0.030 86);     /* muted cream */
+  --gold:     oklch(0.805 0.110 88);     /* bright antique gold on dark */
+  --gold-2:   oklch(0.885 0.085 92);
+  --gold-deep:oklch(0.720 0.120 82);
+  --wine:     oklch(0.560 0.150 12);
+  --wine-2:   oklch(0.660 0.150 14);
+  --mute:     oklch(0.520 0.030 350);
+  --hair:     color-mix(in oklab, var(--gold) 34%, transparent);       /* gold hairline */
+  --shadow:   0 20px 44px -20px oklch(0.10 0.03 350 / 0.7);            /* deep, soft */
 
-  /* Rich accents: rose velvet (site-wide) and olive green (Lekru page) */
-  --rose:    oklch(0.455 0.125 10);
-  --rose-2:  oklch(0.575 0.140 14);
-  --olive:   oklch(0.500 0.082 128);
-  --olive-2: oklch(0.620 0.088 125);
+  /* Jewel accents, tuned to glow on the dark velvet base */
+  --rose:    oklch(0.625 0.150 12);
+  --rose-2:  oklch(0.705 0.150 14);
+  --olive:   oklch(0.640 0.105 150);   /* rich emerald-green */
+  --olive-2: oklch(0.720 0.105 148);
 
   /* accent = rose velvet by default; gold is the metallic companion */
   --accent:      var(--rose);
@@ -46,15 +47,19 @@
 /* The Lekru page stands apart: rich olive green + gold. */
 body[data-page="lekrus"] { --accent: var(--olive); --accent-soft: var(--gold); }
 
-/* Elegant entrance animation when arriving on the Lekru page */
-body[data-page="lekrus"] .wrap { animation: enter-up 0.9s cubic-bezier(.2,.7,.2,1) both; }
+/* Rich entrance on the Lekru page: a rose→gold→green velvet curtain lifts to reveal it */
+body[data-page="lekrus"] .wrap { animation: enter-up 1s cubic-bezier(.2,.7,.2,1) 0.4s both; }
 body[data-page="lekrus"]::after {
-  content: ""; position: fixed; inset: 0; z-index: 80; pointer-events: none;
-  background: linear-gradient(115deg, transparent 34%, color-mix(in oklab, var(--gold) 42%, transparent) 50%, transparent 66%);
-  transform: translateX(-120%); animation: gold-sweep 1.15s ease-out 0.05s both;
+  content: ""; position: fixed; inset: 0; z-index: 90; pointer-events: none;
+  background:
+    linear-gradient(0deg, var(--gold) 0 3px, color-mix(in oklab, var(--gold) 30%, transparent) 3px 7px, transparent 7px),
+    linear-gradient(120deg, oklch(0.30 0.13 10) 0%, oklch(0.34 0.11 84) 50%, oklch(0.30 0.10 152) 100%);
+  box-shadow: 0 10px 40px oklch(0.05 0.02 350 / 0.6);
+  animation: curtain-lift 1.25s cubic-bezier(.76,0,.24,1) both;
 }
-@keyframes enter-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
-@keyframes gold-sweep { to { transform: translateX(120%); } }
+@keyframes curtain-lift { 0%,12% { transform: translateY(0); } 100% { transform: translateY(-101%); } }
+@keyframes enter-up { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { body[data-page="lekrus"]::after { display: none !important; } }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
@@ -62,8 +67,11 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   background:
-    radial-gradient(130% 60% at 50% -10%, oklch(0.99 0.02 90) 0%, transparent 55%),
+    radial-gradient(95% 60% at 10% -6%, oklch(0.36 0.12 10 / 0.60) 0%, transparent 56%),   /* rose velvet glow */
+    radial-gradient(95% 65% at 94% 106%, oklch(0.33 0.10 152 / 0.58) 0%, transparent 56%), /* emerald glow */
+    radial-gradient(80% 45% at 50% -8%, oklch(0.55 0.12 86 / 0.16) 0%, transparent 60%),   /* gold sheen */
     var(--paper);
+  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--body);
   font-size: var(--step-0);
@@ -74,9 +82,9 @@ body {
   min-height: 100svh;
 }
 body::before {
-  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.4;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  mix-blend-mode: multiply;
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
 }
 
 h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.12; margin: 0; overflow-wrap: break-word; }
@@ -127,7 +135,7 @@ img { max-width: 100%; display: block; }
 }
 .btn:hover { filter: brightness(1.1); }
 .btn:active { transform: scale(.97); }
-.btn.gold { background: linear-gradient(120deg, var(--gold-deep), var(--gold)); color: var(--ink); border-color: var(--gold-deep); }
+.btn.gold { background: linear-gradient(120deg, var(--gold-deep), var(--gold)); color: var(--paper); border-color: var(--gold-deep); }
 .btn.ghost { background: transparent; color: var(--accent); }
 
 /* ---------- Top navigation (injected) ---------- */
@@ -216,7 +224,7 @@ img { max-width: 100%; display: block; }
 .card-flip .front { background: radial-gradient(120% 120% at 50% 0, var(--paper-2), var(--paper-3)); border: 1px solid color-mix(in oklab, var(--gold) 45%, transparent); }
 .card-flip .front .no { font-family: var(--display); font-weight: 700; font-size: clamp(2rem, 8vw, 3rem); color: var(--gold-deep); }
 .card-flip .front .hint { font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.58rem; color: var(--ink-2); margin-top: 0.3rem; }
-.card-flip .back { transform: rotateY(180deg); background: linear-gradient(160deg, var(--ink), oklch(0.32 0.03 55)); color: var(--paper); border: 1px solid var(--gold-deep); }
+.card-flip .back { transform: rotateY(180deg); background: linear-gradient(160deg, var(--paper-2), var(--paper-3)); color: var(--ink); border: 1px solid var(--gold-deep); }
 .card-flip .back p { font-size: clamp(0.95rem, 3.4vw, 1.12rem); font-style: italic; margin: 0; line-height: 1.4; }
 .card-flip .back .heart { color: var(--gold); display: block; margin-top: 0.4rem; }
 
@@ -294,7 +302,7 @@ img { max-width: 100%; display: block; }
 
 .arena { position: relative; min-height: 150px; display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; justify-content: center; margin: 0.9rem 0 0.2rem; }
 .vote { min-height: var(--tap); padding: 0.9rem 2rem; border-radius: 999px; font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.14em; font-size: 1rem; cursor: pointer; border: 1px solid var(--gold-deep); -webkit-tap-highlight-color: transparent; transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
-.vote.best { background: linear-gradient(120deg, var(--gold-deep), var(--gold)); color: var(--ink); }
+.vote.best { background: linear-gradient(120deg, var(--gold-deep), var(--gold)); color: var(--paper); }
 .vote.best:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 10px 24px oklch(0.55 0.12 75 / .35); }
 .vote.other { background: var(--paper); color: var(--ink); transition: transform .22s cubic-bezier(.34,1.4,.64,1), background .18s ease, box-shadow .18s ease; will-change: transform; }
 /* When the game arms the runaway, Ashrit's button glides freely via transform */
@@ -309,9 +317,15 @@ img { max-width: 100%; display: block; }
 .game-result .sub { display: block; font-family: var(--script); font-style: normal; font-size: clamp(1.7rem, 8vw, 2.6rem); color: var(--gold-deep); margin-top: 0.15rem; line-height: 1.1; }
 
 /* Ashrit's surprise video (revealed after 3 attempts) */
-.game-video { margin: 1.3rem auto 0; max-width: 440px; border-radius: 16px; overflow: hidden; border: 1px solid color-mix(in oklab, var(--gold) 45%, transparent); box-shadow: 0 10px 26px oklch(0.4 0.05 60 / .16); animation: pop-in .5s cubic-bezier(.34,1.4,.64,1); }
+.game-video { margin: 1.3rem auto 0; max-width: 440px; border-radius: 16px; overflow: hidden; border: 1px solid var(--hair); box-shadow: var(--shadow); animation: pop-in .5s cubic-bezier(.34,1.4,.64,1); }
 .game-video video, .game-video iframe { width: 100%; display: block; background: #000; border: 0; }
 .game-video iframe { aspect-ratio: 16 / 9; }
+.game-video .video-play { position: relative; width: 100%; aspect-ratio: 16/9; border: 0; padding: 0; cursor: pointer; background: #000 center/cover no-repeat; display: grid; place-items: center; -webkit-tap-highlight-color: transparent; }
+.game-video .video-play::before { content: ""; position: absolute; inset: 0; background: oklch(0.10 0.02 350 / 0.42); transition: background .2s ease; }
+.game-video .video-play:hover::before { background: oklch(0.10 0.02 350 / 0.26); }
+.game-video .video-play-btn { position: relative; z-index: 1; width: 66px; height: 66px; border-radius: 50%; background: linear-gradient(120deg, var(--gold-deep), var(--gold)); color: var(--paper); display: grid; place-items: center; font-size: 1.5rem; padding-left: 3px; box-shadow: 0 8px 22px oklch(0.05 0.02 350 / 0.55); transition: transform .2s ease; }
+.game-video .video-play:hover .video-play-btn { transform: scale(1.08); }
+.game-video .video-play-label { position: absolute; z-index: 1; bottom: 12px; color: #fff; font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.72rem; text-shadow: 0 1px 4px rgba(0,0,0,.6); }
 @keyframes pop-in { from { opacity: 0; transform: scale(.9); } to { opacity: 1; transform: none; } }
 
 /* ---------- Footer ---------- */
