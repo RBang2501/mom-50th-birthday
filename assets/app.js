@@ -42,6 +42,8 @@
     setupHeroSparkles();
     setupReveal();
     setupConfetti();
+    // Celebratory confetti when the hero's "50" lands.
+    if (!reduce && document.querySelector(".hero")) setTimeout(function () { if (window.fireConfetti) window.fireConfetti(); }, 950);
   });
 
   /* ---------- Navigation ---------- */
