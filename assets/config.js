@@ -95,6 +95,6 @@ window.CONFIG = {
 
   // ---- Editable labels for the section pages ----
   labels: {
-    lekrus: { title: "Mom's Lekrus", lead: "Kohinoor & Tanishq" },
+    lekrus: { title: "Mom's Lekrus", eyebrow: "Rakshit & Ashrit", lead: "Kohinoor & Tanishq" },
   },
 };
