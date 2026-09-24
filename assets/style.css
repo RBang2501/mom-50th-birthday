@@ -280,11 +280,10 @@ body.lb-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) { .lb-card { animation: none; } .lb-card::after { animation: none; } .t-open img, .t-open video { transition: none; } }
 
 /* ---------- "Lil Girl" inline royal cards (one per screen) ---------- */
-.cardstack { margin-top: 1.2rem; }
-.card-screen { min-height: 100svh; display: grid; place-items: center; padding: 1.4rem 0; }
-.card-screen:first-child { min-height: 82svh; }
+.cardstack { margin-top: 1.6rem; display: grid; gap: 2.2rem; justify-items: center; }
+.card-screen { width: 100%; display: grid; place-items: center; }
 .rcard { animation: none; }
-.rcard .lb-media img, .rcard .lb-media video { max-height: 52svh; }
+.rcard .lb-media img, .rcard .lb-media video { max-height: 60vh; }
 
 /* ---------- 50 reasons (home) ---------- */
 .reasons-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem; }

@@ -80,8 +80,8 @@ window.CONFIG = {
     // Each outcome: a video (YouTube or local mp4) then a photo that forms a framed certificate.
     // Drop the two photos in /photos with EXACTLY these names (or change the paths):
     winners: {
-      rakshit: { name: "Rakshit", mood: "happy", video: "https://www.youtube.com/shorts/5M019f91XeM", photo: "photos/rakshit-win.jpg" },
-      ashrit:  { name: "Ashrit",  mood: "sad",   video: "https://www.youtube.com/watch?v=WGbht0WtGGE", photo: "photos/ashrit-win.jpg" },
+      rakshit: { name: "Rakshit", mood: "happy", video: "https://www.youtube.com/shorts/5M019f91XeM", photo: "photos/RakshitWin.jpg" },
+      ashrit:  { name: "Ashrit",  mood: "sad",   video: "https://www.youtube.com/watch?v=WGbht0WtGGE", photo: "photos/AshritWin.png" },
     },
   },
 
