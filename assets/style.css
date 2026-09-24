@@ -3,20 +3,28 @@
    Mobile-first. Ivory paper · sepia ink · leaf gold · regal wine.
    ================================================================= */
 :root {
-  --paper:    oklch(0.972 0.014 88);
-  --paper-2:  oklch(0.945 0.020 85);
-  --paper-3:  oklch(0.915 0.028 84);
-  --ink:      oklch(0.265 0.028 55);
-  --ink-2:    oklch(0.430 0.030 60);
-  --gold:     oklch(0.780 0.130 84);
-  --gold-2:   oklch(0.860 0.110 92);
-  --gold-deep:oklch(0.640 0.130 70);
-  --wine:     oklch(0.400 0.110 18);
-  --wine-2:   oklch(0.520 0.120 22);
-  --mute:     oklch(0.800 0.020 78);
+  --paper:    oklch(0.975 0.010 88);
+  --paper-2:  oklch(0.950 0.014 85);
+  --paper-3:  oklch(0.922 0.020 84);
+  --ink:      oklch(0.245 0.020 62);
+  --ink-2:    oklch(0.445 0.022 64);
+  --gold:     oklch(0.735 0.092 85);   /* antique / champagne gold, not candy */
+  --gold-2:   oklch(0.845 0.070 90);
+  --gold-deep:oklch(0.595 0.090 74);
+  --wine:     oklch(0.400 0.100 18);
+  --wine-2:   oklch(0.520 0.110 22);
+  --mute:     oklch(0.820 0.014 80);
+  --hair:     color-mix(in oklab, var(--gold-deep) 26%, transparent);  /* elegant gold hairline */
+  --shadow:   0 10px 30px -12px oklch(0.35 0.04 60 / 0.28);            /* soft, diffuse */
 
-  /* per-page accent (overridden on <body data-page>) */
-  --accent:      var(--gold-deep);
+  /* Rich accents: rose velvet (site-wide) and olive green (Lekru page) */
+  --rose:    oklch(0.455 0.125 10);
+  --rose-2:  oklch(0.575 0.140 14);
+  --olive:   oklch(0.500 0.082 128);
+  --olive-2: oklch(0.620 0.088 125);
+
+  /* accent = rose velvet by default; gold is the metallic companion */
+  --accent:      var(--rose);
   --accent-soft: var(--gold);
 
   --step-0: clamp(1.02rem, 0.98rem + 0.4vw, 1.18rem);
@@ -35,12 +43,18 @@
   --maxw: 1160px;
 }
 
-/* per-page accent tints (still within the gold/wine system) */
-body[data-page="bachpan"]      { --accent: oklch(0.55 0.10 55);  --accent-soft: oklch(0.75 0.10 60); }
-body[data-page="cute-moments"] { --accent: var(--gold-deep);     --accent-soft: var(--gold); }
-body[data-page="family-corner"]{ --accent: var(--wine);          --accent-soft: var(--wine-2); }
-body[data-page="lekrus"]       { --accent: oklch(0.58 0.12 40);  --accent-soft: oklch(0.78 0.12 55); }
-body[data-page="memories"]     { --accent: var(--wine);          --accent-soft: var(--gold); }
+/* The Lekru page stands apart: rich olive green + gold. */
+body[data-page="lekrus"] { --accent: var(--olive); --accent-soft: var(--gold); }
+
+/* Elegant entrance animation when arriving on the Lekru page */
+body[data-page="lekrus"] .wrap { animation: enter-up 0.9s cubic-bezier(.2,.7,.2,1) both; }
+body[data-page="lekrus"]::after {
+  content: ""; position: fixed; inset: 0; z-index: 80; pointer-events: none;
+  background: linear-gradient(115deg, transparent 34%, color-mix(in oklab, var(--gold) 42%, transparent) 50%, transparent 66%);
+  transform: translateX(-120%); animation: gold-sweep 1.15s ease-out 0.05s both;
+}
+@keyframes enter-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes gold-sweep { to { transform: translateX(120%); } }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
@@ -86,32 +100,32 @@ img { max-width: 100%; display: block; }
 .page { max-width: var(--maxw); margin-inline: auto; padding: clamp(2rem, 6vh, 4rem) var(--edge) 4rem; }
 .center { text-align: center; }
 
-.eyebrow { font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.3em; font-size: 0.78rem; color: var(--accent); margin: 0 0 0.7rem; }
-.page-title { font-size: var(--step-3); letter-spacing: -0.01em; margin-bottom: 0.8rem; }
+.eyebrow { font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.4em; font-size: 0.7rem; color: var(--gold-deep); opacity: 0.9; margin: 0 0 0.9rem; }
+.page-title { font-size: var(--step-3); letter-spacing: -0.015em; margin-bottom: 0.8rem; }
 .page-title em { font-style: italic; color: var(--accent); }
 .lead { color: var(--ink-2); max-width: 62ch; font-size: var(--step-1); }
 .center .lead { margin-inline: auto; }
 
 /* ---------- Deco divider (SVG-free, pure CSS fan) ---------- */
-.deco { display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin: 1.4rem 0 2.4rem; color: var(--accent); }
+.deco { display: flex; align-items: center; justify-content: center; gap: 0.9rem; margin: 1.5rem 0 2.6rem; color: var(--gold-deep); }
 .center .deco { justify-content: center; }
-.deco::before, .deco::after { content: ""; height: 1px; width: min(120px, 22vw); background: linear-gradient(90deg, transparent, var(--accent)); }
-.deco::after { background: linear-gradient(90deg, var(--accent), transparent); }
-.deco .dot { width: 8px; height: 8px; transform: rotate(45deg); background: var(--accent); }
-.deco .diamonds { display: flex; gap: 5px; }
-.deco .diamonds i { width: 6px; height: 6px; transform: rotate(45deg); background: var(--accent-soft); display: block; }
+.deco::before, .deco::after { content: ""; height: 1px; width: min(170px, 32vw); background: linear-gradient(90deg, transparent, var(--hair)); }
+.deco::after { background: linear-gradient(90deg, var(--hair), transparent); }
+.deco .dot { width: 6px; height: 6px; transform: rotate(45deg); background: var(--gold-deep); }
+.deco .diamonds { display: none; }
 
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
   min-height: var(--tap); padding: 0.85rem 1.6rem;
   font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.9rem;
-  background: var(--ink); color: var(--paper);
-  border: 1px solid var(--accent); border-radius: 999px; cursor: pointer; text-decoration: none;
-  transition: transform .2s ease, box-shadow .2s ease, background .2s ease; -webkit-tap-highlight-color: transparent;
+  background: var(--accent); color: var(--paper);
+  border: 1px solid transparent; border-radius: 999px; cursor: pointer; text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease; -webkit-tap-highlight-color: transparent;
   max-width: 100%; white-space: normal; text-align: center; line-height: 1.2;
+  box-shadow: 0 6px 18px -8px color-mix(in oklab, var(--accent) 60%, transparent);
 }
-.btn:hover { background: var(--accent); }
+.btn:hover { filter: brightness(1.1); }
 .btn:active { transform: scale(.97); }
 .btn.gold { background: linear-gradient(120deg, var(--gold-deep), var(--gold)); color: var(--ink); border-color: var(--gold-deep); }
 .btn.ghost { background: transparent; color: var(--accent); }
@@ -178,7 +192,7 @@ img { max-width: 100%; display: block; }
 @media (min-width: 560px) { .gallery { columns: 3 190px; column-gap: 0.9rem; } }
 @media (min-width: 940px) { .gallery { columns: 4 220px; } }
 .photo { break-inside: avoid; margin: 0 0 0.7rem; border-radius: 12px; overflow: hidden; background: var(--paper-2); border: 1px solid color-mix(in oklab, var(--gold) 34%, transparent); box-shadow: 0 4px 12px oklch(0.4 0.05 60 / .1); }
-.photo .placeholder { display: grid; place-items: center; text-align: center; aspect-ratio: 3/4; color: var(--ink-2); font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.66rem; padding: 1rem; background: repeating-linear-gradient(45deg, transparent 0 12px, color-mix(in oklab, var(--gold) 16%, transparent) 12px 13px), var(--paper-2); }
+.photo .placeholder { display: grid; place-items: center; text-align: center; aspect-ratio: 3/4; color: var(--ink-2); font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.66rem; padding: 1rem; background: linear-gradient(160deg, var(--paper-2), var(--paper-3)); box-shadow: inset 0 0 0 1px var(--hair); }
 .photo .cap { padding: 0.5rem 0.8rem 0.65rem; font-style: italic; color: var(--ink-2); font-size: 0.92rem; border-top: 1px solid color-mix(in oklab, var(--gold) 26%, transparent); }
 .empty-note { color: var(--ink-2); font-style: italic; text-align: center; padding: 2rem 1rem; }
 
@@ -250,7 +264,7 @@ img { max-width: 100%; display: block; }
 .car-track::-webkit-scrollbar { display: none; }
 .mem-card { flex: 0 0 min(86%, 420px); scroll-snap-align: center; margin: 0; background: var(--paper-2); border: 1px solid color-mix(in oklab, var(--gold) 40%, transparent); border-radius: 16px; overflow: hidden; box-shadow: 0 6px 18px oklch(0.4 0.05 60 / .12); }
 .mem-card img, .mem-card .placeholder { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
-.mem-card .placeholder { display: grid; place-items: center; text-align: center; color: var(--ink-2); font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.72rem; background: repeating-linear-gradient(45deg, transparent 0 12px, color-mix(in oklab, var(--gold) 16%, transparent) 12px 13px), var(--paper-2); }
+.mem-card .placeholder { display: grid; place-items: center; text-align: center; color: var(--ink-2); font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.72rem; background: linear-gradient(160deg, var(--paper-2), var(--paper-3)); box-shadow: inset 0 0 0 1px var(--hair); }
 .mc-body { padding: 1rem 1.1rem 1.2rem; text-align: center; }
 .mc-cap { font-family: var(--display); font-size: var(--step-1); color: var(--ink); margin: 0 0 0.35rem; }
 .mc-msg { color: var(--ink-2); font-style: italic; margin: 0; }
@@ -272,13 +286,13 @@ img { max-width: 100%; display: block; }
 /* ---------- Best Lekru game ---------- */
 .game { margin-top: 3rem; background: radial-gradient(120% 100% at 50% 0, var(--paper-2), var(--paper)); border: 1px solid color-mix(in oklab, var(--gold) 45%, transparent); border-radius: 18px; padding: clamp(1.4rem, 5vw, 2.6rem) clamp(1rem, 4vw, 2rem); overflow: hidden; }
 .game-hint { color: var(--ink-2); font-style: italic; margin: 0.4rem 0 0; }
-.game-mascot { font-size: clamp(3.4rem, 16vw, 5.5rem); text-align: center; margin: 1rem 0 0.4rem; line-height: 1; transition: transform .25s ease; will-change: transform; }
+.game-mascot { font-size: clamp(2.6rem, 11vw, 3.8rem); text-align: center; margin: 0.4rem 0 0.2rem; line-height: 1; transition: transform .25s ease; will-change: transform; }
 .game-mascot.happy { animation: mascot-happy .7s ease infinite; }
 .game-mascot.sad { animation: mascot-sad .5s ease; }
 @keyframes mascot-happy { 0%,100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-14px) rotate(4deg); } }
 @keyframes mascot-sad { 0%,100% { transform: translateX(0) rotate(0); } 20% { transform: translateX(-8px) rotate(-6deg); } 40% { transform: translateX(8px) rotate(6deg); } 60% { transform: translateX(-6px) rotate(-4deg); } 80% { transform: translateX(6px) rotate(4deg); } }
 
-.arena { position: relative; min-height: 240px; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: center; margin: 1.2rem 0 0.4rem; }
+.arena { position: relative; min-height: 150px; display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; justify-content: center; margin: 0.9rem 0 0.2rem; }
 .vote { min-height: var(--tap); padding: 0.9rem 2rem; border-radius: 999px; font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.14em; font-size: 1rem; cursor: pointer; border: 1px solid var(--gold-deep); -webkit-tap-highlight-color: transparent; transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
 .vote.best { background: linear-gradient(120deg, var(--gold-deep), var(--gold)); color: var(--ink); }
 .vote.best:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 10px 24px oklch(0.55 0.12 75 / .35); }
@@ -288,7 +302,7 @@ img { max-width: 100%; display: block; }
 .vote.best.crowned { animation: crowned 0.7s ease infinite alternate; }
 @keyframes crowned { from { box-shadow: 0 0 0 0 oklch(0.8 0.13 85 / .5); } to { box-shadow: 0 0 0 12px oklch(0.8 0.13 85 / 0); } }
 
-.game-result { text-align: center; font-family: var(--display); font-size: var(--step-1); margin-top: 1rem; min-height: 1.6em; transition: opacity .3s ease; }
+.game-result { text-align: center; font-family: var(--display); font-size: var(--step-1); margin-top: 0.7rem; min-height: 1.6em; transition: opacity .3s ease; }
 .game-result.win { color: var(--gold-deep); }
 .game-result.aww { color: var(--wine); font-style: italic; }
 .game-result .win-main { font-weight: 700; }
