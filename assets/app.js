@@ -136,13 +136,6 @@
   }
 
   /* ---------- Best Lekru game (Ashrit's button runs away) ---------- */
-  function spawnFloaty(txt, x, y) {
-    if (reduce) return;
-    var f = document.createElement("div"); f.className = "floaty"; f.textContent = txt;
-    f.style.left = (x - 16) + "px"; f.style.top = (y - 20) + "px";
-    document.body.appendChild(f);
-    setTimeout(function () { f.remove(); }, 1300);
-  }
   function setupLekruGame() {
     var game = $("#lekru-game"); if (!game) return;
     var cfg = C.lekruGame || {};
@@ -150,29 +143,35 @@
     var best = $("#vote-best"), other = $("#vote-other");
     if (cfg.best) best.textContent = cfg.best;
     if (cfg.other) other.textContent = cfg.other;
-    var pokes = cfg.sadPokes && cfg.sadPokes.length ? cfg.sadPokes : ["Nice try!", "Too slow!", "Catch me if you can!"];
-    var firstSad = true, resetTimer = null, resetMs = cfg.resetMs || 150000;
+    var seq = cfg.sadSequence && cfg.sadSequence.length ? cfg.sadSequence : ["Hehe dhabbu moyy 😝", "Aga aga Aai 😭", "Nahi nah moyy plissh 🥺"];
+    var video = $("#game-video");
+    var tries = 0, resetTimer = null, resetMs = cfg.resetMs || 150000;
 
     function scheduleReset() { clearTimeout(resetTimer); resetTimer = setTimeout(resetGame, resetMs); }
     function resetGame() {
       mascot.textContent = "🙂"; mascot.className = "game-mascot";
       best.classList.remove("crowned");
       other.classList.remove("runaway"); other.style.transition = ""; other.style.transform = "";
-      result.className = "game-result"; result.textContent = "";
-      firstSad = true;
+      result.className = "game-result"; result.innerHTML = "";
+      hideVideo();
+      tries = 0;
     }
+    function showVideo() {
+      if (!video || !cfg.video || video.dataset.loaded) return;
+      video.innerHTML = '<video src="' + cfg.video + '" autoplay muted loop playsinline controls preload="metadata"></video>';
+      video.dataset.loaded = "1"; video.hidden = false;
+    }
+    function hideVideo() { if (video) { video.hidden = true; video.innerHTML = ""; delete video.dataset.loaded; } }
 
     // Rakshit wins.
     best.addEventListener("click", function () {
-      mascot.textContent = "🥳"; mascot.className = "game-mascot happy";
+      mascot.textContent = cfg.winEmoji || "😎"; mascot.className = "game-mascot happy";
       best.classList.add("crowned");
       result.className = "game-result win";
-      result.textContent = cfg.bestResult || "👑 Best Lekru!";
+      result.innerHTML = '<span class="win-main">' + esc(cfg.bestResult || "👑 Best Lekru!") + "</span>" +
+        (cfg.bestSub ? '<span class="sub">' + esc(cfg.bestSub) + "</span>" : "");
+      hideVideo();
       fireConfetti();
-      var r = best.getBoundingClientRect();
-      ["🎉", "👑", "✨", "🏆", "💛"].forEach(function (e, i) {
-        setTimeout(function () { spawnFloaty(e, r.left + r.width * (0.2 + Math.random() * 0.6), r.top); }, i * 110);
-      });
       scheduleReset();
     });
 
@@ -198,17 +197,21 @@
       void other.offsetWidth;            // flush so the next move animates smoothly
       other.style.transition = "";
     }
-    var lastMove = 0, lastPop = 0;
+    var lastMove = 0, lastTry = 0;
     function dodge(x, y) {
       goRunaway();
       var now = Date.now();
       if (now - lastMove > 80) { moveAway(x, y); lastMove = now; }
       mascot.textContent = "😭"; mascot.className = "game-mascot sad";
       best.classList.remove("crowned");
-      result.className = "game-result aww";
-      result.textContent = (firstSad && cfg.cryLine) ? cfg.cryLine : pokes[(Math.random() * pokes.length) | 0];
-      firstSad = false;
-      if (typeof x === "number" && now - lastPop > 240) { spawnFloaty(Math.random() < 0.5 ? "😭" : "💧", x, y); lastPop = now; }
+      // Count a genuine attempt at most ~once per 0.7s, and advance the sequence.
+      if (now - lastTry > 700) {
+        lastTry = now;
+        tries++;
+        result.className = "game-result aww";
+        result.textContent = seq[Math.min(tries - 1, seq.length - 1)] || "";
+        if (tries >= 3) showVideo();
+      }
       scheduleReset();
     }
     ["pointerenter", "pointerdown", "focus", "touchstart"].forEach(function (ev) {

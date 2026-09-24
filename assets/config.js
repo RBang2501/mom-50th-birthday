@@ -76,9 +76,12 @@ window.CONFIG = {
     best: "Rakshit",
     other: "Ashrit",
     bestResult: "👑 Best Lekru!",
-    cryLine: "Aga aga Aai 😭",     // shown the first time anyone chases Ashrit
-    sadPokes: ["Aga aga Aai 😭", "Nahi nah moyy plissh 🥺", "Hehe dhabbu moyy 😝"],
-    resetMs: 150000,               // auto-reset the game after ~2.5 minutes
+    bestSub: "Mujhe Thaaankuuu Moyyyy !",   // second line shown on win
+    winEmoji: "😎",                          // sunglasses mascot on win
+    // Ashrit reactions, shown in this exact order on 1st, 2nd, 3rd attempt:
+    sadSequence: ["Hehe dhabbu moyy 😝", "Aga aga Aai 😭", "Nahi nah moyy plissh 🥺"],
+    video: "photos/ashrit.mp4",             // shown in the card after 3 Ashrit attempts
+    resetMs: 150000,                        // auto-reset the game after ~2.5 minutes
   },
 
   // ================================================================
