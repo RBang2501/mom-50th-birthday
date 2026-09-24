@@ -15,7 +15,7 @@
   // Pages in the top nav (share.html is intentionally excluded).
   var NAV = [
     { href: "index.html", label: "Home" },
-    { href: "bachpan.html", label: "Bachpan" },
+    { href: "bachpan.html", label: "Lil Girl" },
     { href: "cute-moments.html", label: "Cute Moments" },
     { href: "family-corner.html", label: "Family Corner" },
     { href: "lekrus.html", label: (C.labels && C.labels.lekrus && C.labels.lekrus.title) || "Lekru's" },
@@ -27,6 +27,7 @@
     bindText();
     renderReasons();
     renderTimelines();
+    renderCardStacks();
     renderGalleries();
     renderCarousels();
     renderWishes();
@@ -121,6 +122,26 @@
           '<figure class="t-photo">' + inner + "</figure>" +
           '<span class="t-node" aria-hidden="true"></span>' +
         "</li>";
+      }).join("");
+    });
+  }
+
+  /* ---------- "Lil Girl" royal cards shown inline (one per screen) ---------- */
+  function renderCardStacks() {
+    $$("[data-cards]").forEach(function (box) {
+      var items = C[box.getAttribute("data-cards")] || [];
+      box.innerHTML = items.map(function (t) {
+        if (!t.src) return "";
+        var isVideo = t.type === "video" || /\.(mp4|mov|webm|m4v)(\?|#|$)/i.test(t.src);
+        var media = isVideo
+          ? '<video src="' + esc(t.src) + '" controls playsinline preload="metadata"></video>'
+          : '<img src="' + esc(t.src) + '" alt="' + esc(t.title || "") + '" loading="lazy" />';
+        var title = t.title ? '<h3 class="lb-title">' + esc(t.title) + "</h3>" : "";
+        var divider = (t.title || t.msg) ? '<div class="lb-divider" aria-hidden="true"><span></span><i></i><span></span></div>' : "";
+        var msg = t.msg ? '<p class="lb-msg">' + esc(t.msg) + "</p>" : "";
+        return '<div class="card-screen reveal"><figure class="lb-card rcard">' +
+          '<div class="lb-media">' + media + "</div>" + title + divider + msg +
+        "</figure></div>";
       }).join("");
     });
   }
