@@ -28,7 +28,9 @@
     renderReasons();
     renderTimelines();
     renderGalleries();
+    renderWishes();
     setupCake();
+    setupLekruGame();
     setupWall();
     setupShare();
     setupHeroSparkles();
@@ -121,6 +123,86 @@
         return '<figure class="photo reveal">' + media + cap + "</figure>";
       }).join("");
     });
+  }
+
+  /* ---------- Lekru wishes ---------- */
+  function renderWishes() {
+    $$("[data-wishes]").forEach(function (box) {
+      var items = C[box.getAttribute("data-wishes")] || [];
+      box.innerHTML = items.map(function (w) {
+        return '<div class="wish-card reveal"><p class="quote">' + esc(w.text) + '</p><div class="who">' + esc(w.from) + "</div></div>";
+      }).join("");
+    });
+  }
+
+  /* ---------- Best Lekru game (Ashrit's button runs away) ---------- */
+  function spawnFloaty(txt, x, y) {
+    if (reduce) return;
+    var f = document.createElement("div"); f.className = "floaty"; f.textContent = txt;
+    f.style.left = (x - 16) + "px"; f.style.top = (y - 20) + "px";
+    document.body.appendChild(f);
+    setTimeout(function () { f.remove(); }, 1300);
+  }
+  function setupLekruGame() {
+    var game = $("#lekru-game"); if (!game) return;
+    var cfg = C.lekruGame || {};
+    var arena = $("#arena"), mascot = $("#game-mascot"), result = $("#game-result");
+    var best = $("#vote-best"), other = $("#vote-other");
+    if (cfg.best) best.textContent = cfg.best;
+    if (cfg.other) other.textContent = cfg.other;
+    var pokes = cfg.sadPokes && cfg.sadPokes.length ? cfg.sadPokes : ["Nice try!", "Too slow!", "Catch me if you can!"];
+    var firstSad = true, resetTimer = null, resetMs = cfg.resetMs || 150000;
+
+    function scheduleReset() { clearTimeout(resetTimer); resetTimer = setTimeout(resetGame, resetMs); }
+    function resetGame() {
+      mascot.textContent = "🙂"; mascot.className = "game-mascot";
+      best.classList.remove("crowned");
+      other.classList.remove("runaway"); other.style.left = ""; other.style.top = "";
+      result.className = "game-result"; result.textContent = "";
+      firstSad = true;
+    }
+
+    // Rakshit wins.
+    best.addEventListener("click", function () {
+      mascot.textContent = "🥳"; mascot.className = "game-mascot happy";
+      best.classList.add("crowned");
+      result.className = "game-result win";
+      result.textContent = (cfg.best || "Rakshit") + " — " + (cfg.bestResult || "👑 Best Lekru!");
+      fireConfetti();
+      var r = best.getBoundingClientRect();
+      ["🎉", "👑", "✨", "🏆", "💛"].forEach(function (e, i) {
+        setTimeout(function () { spawnFloaty(e, r.left + r.width * (0.2 + Math.random() * 0.6), r.top); }, i * 120);
+      });
+      scheduleReset();
+    });
+
+    // Ashrit dodges — hover/touch triggers a crying reaction + jump; can't be clicked.
+    function dodge(clientX, clientY) {
+      mascot.textContent = "😭"; mascot.className = "game-mascot sad";
+      best.classList.remove("crowned");
+      result.className = "game-result aww";
+      result.textContent = (firstSad && cfg.cryLine) ? cfg.cryLine : pokes[(Math.random() * pokes.length) | 0];
+      firstSad = false;
+      if (typeof clientX === "number") spawnFloaty(Math.random() < 0.5 ? "😭" : "💧", clientX, clientY);
+      // jump to a new spot inside the arena
+      other.classList.add("runaway");
+      var a = arena.getBoundingClientRect();
+      var bw = other.offsetWidth || 120, bh = other.offsetHeight || 50;
+      var maxX = Math.max(0, a.width - bw), maxY = Math.max(0, a.height - bh);
+      other.style.left = (Math.random() * maxX) + "px";
+      other.style.top = (Math.random() * maxY) + "px";
+      scheduleReset();
+    }
+    ["pointerenter", "pointerdown", "mouseover", "focus", "touchstart"].forEach(function (ev) {
+      other.addEventListener(ev, function (e) {
+        if (e && e.cancelable) e.preventDefault();
+        var cx = e && e.clientX, cy = e && e.clientY;
+        if (e && e.touches && e.touches[0]) { cx = e.touches[0].clientX; cy = e.touches[0].clientY; }
+        dodge(cx, cy);
+      }, { passive: false });
+    });
+    // If a click somehow lands, dodge instead of selecting.
+    other.addEventListener("click", function (e) { e.preventDefault(); dodge(e.clientX, e.clientY); });
   }
 
   /* ---------- Cake ---------- */

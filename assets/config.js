@@ -56,13 +56,30 @@ window.CONFIG = {
     { src: "", cap: "Sunday lunch" },
   ],
 
-  // "Lekru" = little one. Rename LABELS below if you like (e.g. grandkids).
+  // "Lekru" = little one — here it's Mom's two kids: Rakshit & Ashrit.
+  // Cute photos of the two of you WITH Mom:
   lekrus: [
-    { src: "", cap: "The littlest one" },
-    { src: "", cap: "Story time with Aaji" },
+    { src: "", cap: "Rakshit, Ashrit & Mom" },
+    { src: "", cap: "The three of us" },
     { src: "", cap: "Partners in crime" },
-    { src: "", cap: "First steps" },
+    { src: "", cap: "Mom & her boys" },
   ],
+
+  // Wishes from each of you (edit freely):
+  lekruWishes: [
+    { from: "Rakshit", text: "Happy 50th, Mom! Thank you for everything — you're the best. (And clearly the favourite child agrees. 😉)" },
+    { from: "Ashrit", text: "Happy birthday to the most amazing Mom in the world. Love you loads! ❤️" },
+  ],
+
+  // The "Best Lekru" game — best gets the party, other's button runs away 😜
+  lekruGame: {
+    best: "Rakshit",
+    other: "Ashrit",
+    bestResult: "👑 Certified Best Lekru! Mom's favourite (obviously).",
+    cryLine: "Aga aga, Aai! 😭",   // shown the first time anyone chases Ashrit
+    sadPokes: ["Aga aga, Aai! 😭", "Nice try 😏", "Ashrit who? 🙈", "Too slow! 🏃💨", "Catch me if you can! 🏃💨"],
+    resetMs: 150000,               // auto-reset the game after ~2.5 minutes
+  },
 
   // ================================================================
   // MEMORIES FROM OTHERS — Google Form + Sheet (see README)
@@ -81,6 +98,6 @@ window.CONFIG = {
 
   // ---- Editable labels for the section pages ----
   labels: {
-    lekrus: { title: "Lekru's Corner", eyebrow: "For the little ones", lead: "The tiniest hearts who adore her most." },
+    lekrus: { title: "Mom's Two Lekrus", eyebrow: "Rakshit & Ashrit", lead: "Her two boys — equally loved, endlessly competitive." },
   },
 };
