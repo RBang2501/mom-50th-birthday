@@ -28,6 +28,7 @@
     renderReasons();
     renderTimelines();
     renderGalleries();
+    renderCarousels();
     renderWishes();
     setupCake();
     setupLekruGame();
@@ -122,6 +123,54 @@
         var cap = p.cap ? '<figcaption class="cap">' + esc(p.cap) + "</figcaption>" : "";
         return '<figure class="photo reveal">' + media + cap + "</figure>";
       }).join("");
+    });
+  }
+
+  /* ---------- Photo card carousel (one at a time on mobile) ---------- */
+  function renderCarousels() {
+    $$("[data-carousel]").forEach(function (box) {
+      var items = C[box.getAttribute("data-carousel")] || [];
+      if (!items.length) { box.innerHTML = '<p class="empty-note">Photos coming soon 💛</p>'; return; }
+      var cards = items.map(function (p) {
+        var media = p.src
+          ? '<img src="' + esc(p.src) + '" alt="' + esc(p.cap || "") + '" loading="lazy" />'
+          : '<div class="placeholder">Add photo</div>';
+        var cap = p.cap ? '<h3 class="mc-cap">' + esc(p.cap) + "</h3>" : "";
+        var msg = p.msg ? '<p class="mc-msg">' + esc(p.msg) + "</p>" : "";
+        return '<figure class="mem-card">' + media + '<figcaption class="mc-body">' + cap + msg + "</figcaption></figure>";
+      }).join("");
+      box.innerHTML =
+        '<button class="car-arrow prev" type="button" aria-label="Previous photo">‹</button>' +
+        '<div class="car-track">' + cards + "</div>" +
+        '<button class="car-arrow next" type="button" aria-label="Next photo">›</button>' +
+        '<div class="car-dots"></div>';
+
+      var track = box.querySelector(".car-track");
+      var slides = Array.prototype.slice.call(track.children);
+      var dotsBox = box.querySelector(".car-dots");
+      dotsBox.innerHTML = slides.map(function (_, i) {
+        return '<button class="dot' + (i === 0 ? " on" : "") + '" type="button" aria-label="Go to photo ' + (i + 1) + '"></button>';
+      }).join("");
+      var dots = Array.prototype.slice.call(dotsBox.children);
+
+      function goTo(i) {
+        i = Math.max(0, Math.min(slides.length - 1, i));
+        var s = slides[i];
+        track.scrollTo({ left: s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2, behavior: reduce ? "auto" : "smooth" });
+      }
+      function current() {
+        var mid = track.scrollLeft + track.clientWidth / 2, best = 0, bd = Infinity;
+        slides.forEach(function (s, i) { var d = Math.abs(s.offsetLeft + s.offsetWidth / 2 - mid); if (d < bd) { bd = d; best = i; } });
+        return best;
+      }
+      dots.forEach(function (d, i) { d.addEventListener("click", function () { goTo(i); }); });
+      box.querySelector(".prev").addEventListener("click", function () { goTo(current() - 1); });
+      box.querySelector(".next").addEventListener("click", function () { goTo(current() + 1); });
+      var raf;
+      track.addEventListener("scroll", function () {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(function () { var i = current(); dots.forEach(function (d, j) { d.classList.toggle("on", j === i); }); });
+      });
     });
   }
 

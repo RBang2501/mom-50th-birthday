@@ -56,19 +56,13 @@ window.CONFIG = {
     { src: "", cap: "Sunday lunch" },
   ],
 
-  // "Lekru" = little one — here it's Mom's two kids: Rakshit & Ashrit.
-  // Cute photos of the two of you WITH Mom:
+  // "Lekru" = little one — here it's Mom's gems: Kohinoor & Tanishq.
+  // Photo cards — mobile shows ONE at a time with a short message below each.
   lekrus: [
-    { src: "", cap: "Rakshit, Ashrit & Mom" },
-    { src: "", cap: "The three of us" },
-    { src: "", cap: "Partners in crime" },
-    { src: "", cap: "Mom & her boys" },
-  ],
-
-  // Wishes from each of you (edit freely):
-  lekruWishes: [
-    { from: "Rakshit", text: "Happy 50th, Mom! Thank you for everything — you're the best." },
-    { from: "Ashrit", text: "Happy birthday to the most amazing Mom in the world. Love you loads! ❤️" },
+    { src: "", cap: "Kohinoor & Mom", msg: "Her elder gem, always by her side." },
+    { src: "", cap: "Tanishq & Mom", msg: "Her little sparkle who keeps her smiling." },
+    { src: "", cap: "The three of us", msg: "Her whole world in one frame. 💛" },
+    { src: "", cap: "Partners in crime", msg: "Trouble always comes in twos." },
   ],
 
   // The "Best Lekru" game — best gets the party, other's button runs away 😜
@@ -101,6 +95,6 @@ window.CONFIG = {
 
   // ---- Editable labels for the section pages ----
   labels: {
-    lekrus: { title: "Mom's Two Lekrus", eyebrow: "Rakshit & Ashrit", lead: "Her two boys — equally loved, endlessly competitive." },
+    lekrus: { title: "Mom's Lekrus", eyebrow: "Kohinoor & Tanishq", lead: "Her Kohinoor and her Tanishq — the two gems she treasures most." },
   },
 };
