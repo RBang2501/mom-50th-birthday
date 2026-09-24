@@ -63,7 +63,6 @@ body {
   margin: 0;
   background:
     radial-gradient(95% 60% at 10% -6%, oklch(0.36 0.12 10 / 0.60) 0%, transparent 56%),   /* rose velvet glow */
-    radial-gradient(95% 65% at 94% 106%, oklch(0.33 0.10 152 / 0.58) 0%, transparent 56%), /* emerald glow */
     radial-gradient(80% 45% at 50% -8%, oklch(0.55 0.12 86 / 0.16) 0%, transparent 60%),   /* gold sheen */
     var(--paper);
   background-attachment: fixed;
