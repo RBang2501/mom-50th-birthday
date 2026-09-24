@@ -46,10 +46,21 @@ window.CONFIG = {
   // center line. Tap one to open the royal card (media on top, then a cursive
   // title + message you'll add later). type: "video" or "image".
   cuteMoments: [
-    { type: "video", src: "photos/cute-laugh.mp4", title: "Title here", msg: "Message here — add the story behind this moment." },
-    { type: "image", src: "photos/cutu.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
-    { type: "video", src: "photos/golden-hour.mp4", title: "Title here", msg: "Message here — add the story behind this moment." },
-    { type: "video", src: "photos/control-majnu.mp4", title: "Title here", msg: "Message here — add the story behind this moment." },
+    { type: "video", src: "photos/cute-laugh.mp4",     title: "Title here", msg: "Message here — add the story behind this moment." },
+    { type: "image", src: "photos/cutu.jpg",           title: "Title here", msg: "Message here — add the story behind this moment." },
+    { type: "video", src: "photos/golden-hour.mp4",    title: "Title here", msg: "Message here — add the story behind this moment." },
+    { type: "image", src: "photos/hehe.jpg",           title: "Title here", msg: "Message here — add the story behind this moment." },
+    { type: "video", src: "photos/batting.mp4",        title: "Title here", msg: "Message here — add the story behind this moment." },
+    { type: "image", src: "photos/air-hockey.jpg",     title: "Title here", msg: "Message here — add the story behind this moment." },
+    { type: "video", src: "photos/udta-hi-phiro.mp4",  title: "Title here", msg: "Message here — add the story behind this moment." },
+    { type: "image", src: "photos/murugan-aunty.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
+    { type: "video", src: "photos/pool.mp4",           title: "Title here", msg: "Message here — add the story behind this moment." },
+    { type: "image", src: "photos/little-moyy.jpg",    title: "Title here", msg: "Message here — add the story behind this moment." },
+    { type: "video", src: "photos/bowling.mp4",        title: "Title here", msg: "Message here — add the story behind this moment." },
+    { type: "image", src: "photos/buaaaa.jpg",         title: "Title here", msg: "Message here — add the story behind this moment." },
+    { type: "video", src: "photos/diwali-splash.mp4",  title: "Title here", msg: "Message here — add the story behind this moment." },
+    { type: "image", src: "photos/coffee-date.jpg",    title: "Title here", msg: "Message here — add the story behind this moment." },
+    { type: "video", src: "photos/control-majnu.mp4",  title: "Title here", msg: "Message here — add the story behind this moment." },
   ],
 
   // New tabs — royal-card pages (one card per entry). Add { src, title, msg }.
