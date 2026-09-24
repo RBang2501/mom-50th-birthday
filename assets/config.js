@@ -56,13 +56,13 @@ window.CONFIG = {
     { src: "", cap: "Sunday lunch" },
   ],
 
-  // "Lekru" = little one — here it's Mom's gems: Kohinoor & Tanishq.
-  // Photo cards — mobile shows ONE at a time with a short message below each.
+  // Photo cards — one per screen on mobile. Add your photo + your message.
+  // (Add or remove card slots as you like.)
   lekrus: [
-    { src: "", cap: "Kohinoor & Mom", msg: "Her elder gem, always by her side." },
-    { src: "", cap: "Tanishq & Mom", msg: "Her little sparkle who keeps her smiling." },
-    { src: "", cap: "The three of us", msg: "Her whole world in one frame. 💛" },
-    { src: "", cap: "Partners in crime", msg: "Trouble always comes in twos." },
+    { src: "", msg: "" },
+    { src: "", msg: "" },
+    { src: "", msg: "" },
+    { src: "", msg: "" },
   ],
 
   // The "Best Lekru" game — best gets the party, other's button runs away 😜
@@ -95,6 +95,6 @@ window.CONFIG = {
 
   // ---- Editable labels for the section pages ----
   labels: {
-    lekrus: { title: "Mom's Lekrus", eyebrow: "Kohinoor & Tanishq", lead: "Her Kohinoor and her Tanishq — the two gems she treasures most." },
+    lekrus: { title: "Mom's Lekrus", lead: "Kohinoor & Tanishq" },
   },
 };
