@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#c99a2e" />
+<title>Golden Jubilee · Happy 50th Birthday</title>
+<meta name="description" content="A golden-jubilee keepsake for Mom's 50th birthday." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+SC:wght@500;600&family=Great+Vibes&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/style.css" />
+</head>
+<body data-page="home">
+<canvas id="confetti"></canvas>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="kicker" data-cfg-static>A Golden Jubilee Celebration · Est. <span data-cfg="estYear">1976</span></p>
+    <div class="happy">Happy</div>
+    <div class="num foil">50</div>
+    <div class="goldenjub">Golden Birthday</div>
+    <div class="name script" data-cfg="momName">Mom</div>
+    <p class="tag" data-cfg="tagline">Fifty golden years, and every one made someone's life warmer.</p>
+    <div class="hero-cta">
+      <a class="btn gold" href="#reasons">Fifty reasons</a>
+      <a class="btn ghost" href="bachpan.html">Her story</a>
+    </div>
+  </div>
+  <a class="scroll-cue" href="#fun" aria-label="Scroll down">Scroll<span></span></a>
+</header>
+
+<main class="wrap">
+  <!-- FUN: blow out the candles -->
+  <section id="fun" class="page">
+    <div class="center">
+      <p class="eyebrow reveal">Make a wish</p>
+      <h2 class="page-title reveal">Blow out the <em>candles</em></h2>
+      <div class="deco reveal"><span class="diamonds"><i></i><i></i><i></i></span><span class="dot"></span><span class="diamonds"><i></i><i></i><i></i></span></div>
+    </div>
+    <div class="cake-stage">
+      <div class="cake reveal">
+        <div class="candles" id="candles"></div>
+        <svg viewBox="0 0 320 220" role="img" aria-label="A birthday cake">
+          <ellipse cx="160" cy="200" rx="150" ry="16" fill="oklch(0.88 0.03 82)"/>
+          <rect x="40" y="120" width="240" height="72" rx="10" fill="oklch(0.86 0.06 60)"/>
+          <path d="M40 132 q30 18 60 0 q30 -18 60 0 q30 18 60 0 q30 -18 60 0 v-16 H40 Z" fill="oklch(0.97 0.02 90)"/>
+          <rect x="90" y="72" width="140" height="56" rx="9" fill="oklch(0.82 0.09 40)"/>
+          <path d="M90 84 q23 15 46 0 q23 -15 47 0 q23 15 47 0 v-12 H90 Z" fill="oklch(0.97 0.02 90)"/>
+          <g fill="oklch(0.76 0.13 82)"><circle cx="80" cy="160" r="4"/><circle cx="120" cy="172" r="4"/><circle cx="160" cy="160" r="4"/><circle cx="200" cy="172" r="4"/><circle cx="240" cy="160" r="4"/><circle cx="120" cy="104" r="3.5"/><circle cx="160" cy="112" r="3.5"/><circle cx="200" cy="104" r="3.5"/></g>
+        </svg>
+      </div>
+      <button class="btn" id="blow-btn">Blow out the candles</button>
+      <div class="cake-msg" id="cake-msg">
+        <p class="big script" data-cfg="wishText">Here's to you, always.</p>
+        <p data-cfg="wishSub">Fifty candles, and not one shines as bright as you do. We love you. ✨</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 50 REASONS -->
+  <section id="reasons" class="page">
+    <div class="center">
+      <p class="eyebrow reveal">Tap a card to reveal</p>
+      <h2 class="page-title reveal">Fifty reasons we <em>love you</em></h2>
+      <div class="deco reveal"><span class="diamonds"><i></i><i></i><i></i></span><span class="dot"></span><span class="diamonds"><i></i><i></i><i></i></span></div>
+    </div>
+    <div class="reasons-grid" data-reasons></div>
+  </section>
+
+  <!-- SECTION CARDS -->
+  <section id="explore" class="page">
+    <div class="center">
+      <p class="eyebrow reveal">Wander through the years</p>
+      <h2 class="page-title reveal">Her <em>golden</em> chapters</h2>
+      <div class="deco reveal"><span class="diamonds"><i></i><i></i><i></i></span><span class="dot"></span><span class="diamonds"><i></i><i></i><i></i></span></div>
+    </div>
+    <div class="cards">
+      <a class="nav-card reveal" href="bachpan.html"><span class="corner"></span><span class="k">Childhood</span><h3>Bachpan</h3><p>Where it all began — tiny feet, big dreams.</p><span class="arrow">→</span></a>
+      <a class="nav-card reveal" href="cute-moments.html"><span class="corner"></span><span class="k">Snapshots</span><h3>Cute Moments</h3><p>The smiles, the mischief, the golden hours.</p><span class="arrow">→</span></a>
+      <a class="nav-card reveal" href="family-corner.html"><span class="corner"></span><span class="k">Together</span><h3>Family Corner</h3><p>The people lucky enough to call her ours.</p><span class="arrow">→</span></a>
+      <a class="nav-card reveal" href="lekrus.html"><span class="corner"></span><span class="k">Little ones</span><h3 data-cfg-static>Lekru's</h3><p>The tiniest hearts who adore her most.</p><span class="arrow">→</span></a>
+      <a class="nav-card reveal" href="memories.html"><span class="corner"></span><span class="k">From everyone</span><h3>Memories 🔒</h3><p>Wishes from all who love her — unlocks on the big day.</p><span class="arrow">→</span></a>
+      <a class="nav-card reveal" href="share.html"><span class="corner"></span><span class="k">Contribute</span><h3>Add a Memory</h3><p>Share a photo with her and a sweet note.</p><span class="arrow">→</span></a>
+    </div>
+  </section>
+</main>
+
+<script src="assets/config.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

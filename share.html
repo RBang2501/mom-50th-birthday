@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#c99a2e" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Add a Memory for the Birthday Surprise</title>
+<meta name="description" content="Share a photo with the birthday star and a sweet message." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+SC:wght@500;600&family=Great+Vibes&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/style.css" />
+</head>
+<!-- data-bare = no navigation, no links to the rest of the site (shareable link) -->
+<body data-page="share" data-bare>
+<canvas id="confetti"></canvas>
+<div class="share-shell wrap">
+  <div class="share-card">
+    <div class="center">
+      <p class="eyebrow">A secret birthday surprise</p>
+      <h1 class="page-title">Share a memory <em>with the birthday star</em> <span class="script" style="color:var(--gold-deep);">🤫</span></h1>
+      <div class="deco"><span class="diamonds"><i></i><i></i><i></i></span><span class="dot"></span><span class="diamonds"><i></i><i></i><i></i></span></div>
+    </div>
+    <p class="lead" style="text-align:center;margin-inline:auto;">Upload a photo of you together and write something sweet. It'll join a wall of surprises revealed on the big day. 💛</p>
+
+    <ol class="share-steps">
+      <li><span class="n">1</span><span>Tap <b>Open the form</b> below.</span></li>
+      <li><span class="n">2</span><span>Add a <b>photo of you together</b> and a short <b>message</b>.</span></li>
+      <li><span class="n">3</span><span>Submit — that's it. Thank you for making this special!</span></li>
+    </ol>
+
+    <div class="center">
+      <a class="btn gold" id="open-form" href="#" target="_blank" rel="noopener">Open the form ↗</a>
+    </div>
+    <p style="font-size:.85rem;color:var(--ink-2);font-style:italic;text-align:center;margin-top:1rem;">
+      A Google sign-in is required to upload a photo (Google's rule). Please keep photos kind and tasteful — they'll be shown to all the guests.
+    </p>
+
+    <div class="form-embed" id="form-embed" hidden>
+      <iframe id="form-iframe" title="Share your photo and message" loading="lazy"></iframe>
+    </div>
+  </div>
+</div>
+<script src="assets/config.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
