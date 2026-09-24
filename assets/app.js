@@ -214,7 +214,7 @@
       if (!video || !cfg.video || video.dataset.loaded) return;
       var id = ytId(cfg.video);
       if (id) {
-        video.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&playsinline=1&rel=0" title="A message for Mom" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+        video.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&mute=1&playsinline=1&rel=0" title="A message for Mom" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
       } else {
         video.innerHTML = '<video src="' + esc(cfg.video) + '" autoplay muted loop playsinline controls preload="metadata"></video>';
       }
