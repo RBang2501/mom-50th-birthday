@@ -265,9 +265,9 @@ img { max-width: 100%; display: block; }
 .vote { min-height: var(--tap); padding: 0.9rem 2rem; border-radius: 999px; font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.14em; font-size: 1rem; cursor: pointer; border: 1px solid var(--gold-deep); -webkit-tap-highlight-color: transparent; transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
 .vote.best { background: linear-gradient(120deg, var(--gold-deep), var(--gold)); color: var(--ink); }
 .vote.best:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 10px 24px oklch(0.55 0.12 75 / .35); }
-.vote.other { background: var(--paper); color: var(--ink); }
-/* When the game arms the runaway, Ashrit's button floats freely */
-.vote.other.runaway { position: absolute; }
+.vote.other { background: var(--paper); color: var(--ink); transition: transform .22s cubic-bezier(.34,1.4,.64,1), background .18s ease, box-shadow .18s ease; will-change: transform; }
+/* When the game arms the runaway, Ashrit's button glides freely via transform */
+.vote.other.runaway { position: absolute; left: 0; top: 0; margin: 0; }
 .vote.best.crowned { animation: crowned 0.7s ease infinite alternate; }
 @keyframes crowned { from { box-shadow: 0 0 0 0 oklch(0.8 0.13 85 / .5); } to { box-shadow: 0 0 0 12px oklch(0.8 0.13 85 / 0); } }
 

@@ -67,7 +67,7 @@ window.CONFIG = {
 
   // Wishes from each of you (edit freely):
   lekruWishes: [
-    { from: "Rakshit", text: "Happy 50th, Mom! Thank you for everything — you're the best. (And clearly the favourite child agrees. 😉)" },
+    { from: "Rakshit", text: "Happy 50th, Mom! Thank you for everything — you're the best." },
     { from: "Ashrit", text: "Happy birthday to the most amazing Mom in the world. Love you loads! ❤️" },
   ],
 
@@ -75,9 +75,9 @@ window.CONFIG = {
   lekruGame: {
     best: "Rakshit",
     other: "Ashrit",
-    bestResult: "👑 Certified Best Lekru! Mom's favourite (obviously).",
-    cryLine: "Aga aga, Aai! 😭",   // shown the first time anyone chases Ashrit
-    sadPokes: ["Aga aga, Aai! 😭", "Nice try 😏", "Ashrit who? 🙈", "Too slow! 🏃💨", "Catch me if you can! 🏃💨"],
+    bestResult: "👑 Best Lekru!",
+    cryLine: "Aga aga Aai 😭",     // shown the first time anyone chases Ashrit
+    sadPokes: ["Aga aga Aai 😭", "Nahi nah moyy plissh 🥺", "Hehe dhabbu moyy 😝"],
     resetMs: 150000,               // auto-reset the game after ~2.5 minutes
   },
 

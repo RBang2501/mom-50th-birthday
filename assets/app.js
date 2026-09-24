@@ -157,7 +157,7 @@
     function resetGame() {
       mascot.textContent = "🙂"; mascot.className = "game-mascot";
       best.classList.remove("crowned");
-      other.classList.remove("runaway"); other.style.left = ""; other.style.top = "";
+      other.classList.remove("runaway"); other.style.transition = ""; other.style.transform = "";
       result.className = "game-result"; result.textContent = "";
       firstSad = true;
     }
@@ -167,42 +167,64 @@
       mascot.textContent = "🥳"; mascot.className = "game-mascot happy";
       best.classList.add("crowned");
       result.className = "game-result win";
-      result.textContent = (cfg.best || "Rakshit") + " — " + (cfg.bestResult || "👑 Best Lekru!");
+      result.textContent = cfg.bestResult || "👑 Best Lekru!";
       fireConfetti();
       var r = best.getBoundingClientRect();
       ["🎉", "👑", "✨", "🏆", "💛"].forEach(function (e, i) {
-        setTimeout(function () { spawnFloaty(e, r.left + r.width * (0.2 + Math.random() * 0.6), r.top); }, i * 120);
+        setTimeout(function () { spawnFloaty(e, r.left + r.width * (0.2 + Math.random() * 0.6), r.top); }, i * 110);
       });
       scheduleReset();
     });
 
-    // Ashrit dodges — hover/touch triggers a crying reaction + jump; can't be clicked.
-    function dodge(clientX, clientY) {
+    // Ashrit glides away smoothly and can't be caught. Reacts with a cry line.
+    function moveAway(avoidX, avoidY) {
+      var a = arena.getBoundingClientRect();
+      var bw = other.offsetWidth || 120, bh = other.offsetHeight || 50;
+      var maxX = Math.max(0, a.width - bw), maxY = Math.max(0, a.height - bh);
+      var nx = 0, ny = 0;
+      for (var t = 0; t < 16; t++) {
+        nx = Math.random() * maxX; ny = Math.random() * maxY;
+        if (typeof avoidX !== "number") break;
+        if (Math.hypot((a.left + nx + bw / 2) - avoidX, (a.top + ny + bh / 2) - avoidY) > 150) break;
+      }
+      other.style.transform = "translate(" + nx + "px," + ny + "px)";
+    }
+    function goRunaway() {
+      if (other.classList.contains("runaway")) return;
+      var a = arena.getBoundingClientRect(), r = other.getBoundingClientRect();
+      other.style.transition = "none";
+      other.classList.add("runaway");
+      other.style.transform = "translate(" + (r.left - a.left) + "px," + (r.top - a.top) + "px)";
+      void other.offsetWidth;            // flush so the next move animates smoothly
+      other.style.transition = "";
+    }
+    var lastMove = 0, lastPop = 0;
+    function dodge(x, y) {
+      goRunaway();
+      var now = Date.now();
+      if (now - lastMove > 80) { moveAway(x, y); lastMove = now; }
       mascot.textContent = "😭"; mascot.className = "game-mascot sad";
       best.classList.remove("crowned");
       result.className = "game-result aww";
       result.textContent = (firstSad && cfg.cryLine) ? cfg.cryLine : pokes[(Math.random() * pokes.length) | 0];
       firstSad = false;
-      if (typeof clientX === "number") spawnFloaty(Math.random() < 0.5 ? "😭" : "💧", clientX, clientY);
-      // jump to a new spot inside the arena
-      other.classList.add("runaway");
-      var a = arena.getBoundingClientRect();
-      var bw = other.offsetWidth || 120, bh = other.offsetHeight || 50;
-      var maxX = Math.max(0, a.width - bw), maxY = Math.max(0, a.height - bh);
-      other.style.left = (Math.random() * maxX) + "px";
-      other.style.top = (Math.random() * maxY) + "px";
+      if (typeof x === "number" && now - lastPop > 240) { spawnFloaty(Math.random() < 0.5 ? "😭" : "💧", x, y); lastPop = now; }
       scheduleReset();
     }
-    ["pointerenter", "pointerdown", "mouseover", "focus", "touchstart"].forEach(function (ev) {
+    ["pointerenter", "pointerdown", "focus", "touchstart"].forEach(function (ev) {
       other.addEventListener(ev, function (e) {
         if (e && e.cancelable) e.preventDefault();
-        var cx = e && e.clientX, cy = e && e.clientY;
-        if (e && e.touches && e.touches[0]) { cx = e.touches[0].clientX; cy = e.touches[0].clientY; }
-        dodge(cx, cy);
+        var x = e && e.clientX, y = e && e.clientY;
+        if (e && e.touches && e.touches[0]) { x = e.touches[0].clientX; y = e.touches[0].clientY; }
+        dodge(x, y);
       }, { passive: false });
     });
-    // If a click somehow lands, dodge instead of selecting.
     other.addEventListener("click", function (e) { e.preventDefault(); dodge(e.clientX, e.clientY); });
+    // Desktop: dart away as the cursor gets close — alive and uncatchable.
+    arena.addEventListener("mousemove", function (e) {
+      var r = other.getBoundingClientRect();
+      if (Math.hypot(e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2)) < 95) dodge(e.clientX, e.clientY);
+    });
   }
 
   /* ---------- Cake ---------- */
