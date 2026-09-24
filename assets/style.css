@@ -47,39 +47,14 @@
 /* The Lekru page stands apart: rich olive green + gold. */
 body[data-page="lekrus"] { --accent: var(--olive); --accent-soft: var(--gold); }
 
-/* Rich entrance on the Lekru page: golden light blooms, content lifts out of a blur, title gilds */
-body[data-page="lekrus"] .wrap { animation: lux-in 1.15s cubic-bezier(.2,.7,.2,1) both; }
-@keyframes lux-in {
-  0%   { opacity: 0; transform: scale(0.965) translateY(20px); filter: blur(9px); }
-  55%  { filter: blur(0); }
-  100% { opacity: 1; transform: none; filter: blur(0); }
-}
-body[data-page="lekrus"]::after {
-  content: ""; position: fixed; inset: 0; z-index: 90; pointer-events: none;
-  background: radial-gradient(circle at 50% 40%,
-    oklch(0.92 0.14 90 / 0.60) 0%,
-    oklch(0.78 0.13 84 / 0.28) 16%,
-    oklch(0.62 0.15 12 / 0.14) 34%,
-    transparent 52%);
-  animation: gold-bloom 1.5s ease-out both;
-}
-@keyframes gold-bloom {
-  0%   { opacity: 0; transform: scale(0.25); }
-  25%  { opacity: 1; }
-  100% { opacity: 0; transform: scale(2.6); }
-}
-/* The title gilds in with one sweep of light, and stays gold */
+/* Lekru page: calm fade-in on load (no golden flash). Title stays a static gilded gold. */
+body[data-page="lekrus"] .wrap { animation: lux-in 0.8s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes lux-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 body[data-page="lekrus"] .page-title {
-  background: linear-gradient(100deg, var(--gold-deep) 0%, var(--gold) 38%, oklch(0.98 0.05 92) 50%, var(--gold) 62%, var(--gold-deep) 100%);
-  background-size: 250% 100%;
+  background: linear-gradient(100deg, var(--gold-deep), var(--gold-2) 50%, var(--gold-deep));
   -webkit-background-clip: text; background-clip: text; color: transparent;
-  animation: title-gild 1.7s ease-out 0.45s both;
 }
-@keyframes title-gild { 0% { background-position: 130% 0; } 100% { background-position: -30% 0; } }
-@media (prefers-reduced-motion: reduce) {
-  body[data-page="lekrus"]::after { display: none !important; }
-  body[data-page="lekrus"] .page-title { animation: none; background-position: 40% 0; }
-}
+@media (prefers-reduced-motion: reduce) { body[data-page="lekrus"] .wrap { animation: none; } }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
