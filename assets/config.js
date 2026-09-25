@@ -90,8 +90,8 @@ window.CONFIG = {
     hint: "Golden Jubilee",
     scratchLabel: "Scratch to reveal your gift",
     prizeEmoji: "🪙",
-    prize: "A Gold Set",
-    message: "For being the most amazing person and completing your cute little 50 years, you are hereby awarded a set of pure gold by the Council of the MARS Family. 💛",
+    prize: "A Gift of Gold",
+    message: "Fifty golden years, and you have made every single one of them shine. So the whole MARS family got together and agreed on the only gift worthy of our golden girl: gold, as precious as you are. Happy 50th, Mom. We love you.",
     council: [ ["M", "Manisha"], ["A", "Ashrit"], ["R", "Rakshit"], ["S", "Sanjay"] ],
   },
 
@@ -104,8 +104,8 @@ window.CONFIG = {
 
   // Lekru page banners — full-width & swipeable at the top. Add 3–4 photo paths.
   lekruBanners: [
-    { src: "photos/LekruBanner1.jpg", title: "The Innocent Trio", msg: "So young here, already carrying her whole world on one hip. We were the lucky ones who got to be it." },
-    { src: "photos/LekruBanner2.png", title: "The Two Cutus",     msg: "Two little rascals who shared everything, and grew into best friends because she raised us that way." },
+    { src: "photos/LekruBanner1.jpg", title: "The Innocent Trio", msg: "Maa ki poori duniya, ek hi frame mein." },
+    { src: "photos/LekruBanner2.png", title: "The Two Cutus",     msg: "Dono alag, par dil hamesha ek. Maa ka diya rishta." },
   ],
   // Small photo cards, 2 per row. First 4 show; the rest hide behind "See more".
   // Tap a card to open it big (title + message optional). For video add type:"video".

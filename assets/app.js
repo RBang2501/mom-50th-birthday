@@ -561,7 +561,7 @@
     function pos(e) { var r = canvas.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
     function scratch(p) {
       ctx.globalCompositeOperation = "destination-out";
-      ctx.beginPath(); ctx.arc(p.x, p.y, 26, 0, 7); ctx.fill();
+      ctx.beginPath(); ctx.arc(p.x, p.y, 44, 0, 7); ctx.fill();
       ctx.globalCompositeOperation = "source-over";
     }
     function clearedRatio() {
@@ -579,10 +579,10 @@
     canvas.addEventListener("pointerdown", function (e) { if (revealed) return; drawing = true; scratch(pos(e)); if (e.cancelable) e.preventDefault(); });
     canvas.addEventListener("pointermove", function (e) {
       if (!drawing || revealed) return; scratch(pos(e));
-      if (Date.now() - lastCheck > 150) { lastCheck = Date.now(); if (clearedRatio() > 0.32) finish(); }
+      if (Date.now() - lastCheck > 60) { lastCheck = Date.now(); if (clearedRatio() > 0.14) finish(); }
       if (e.cancelable) e.preventDefault();
     });
-    window.addEventListener("pointerup", function () { if (!drawing) return; drawing = false; if (!revealed && clearedRatio() > 0.2) finish(); });
+    window.addEventListener("pointerup", function () { if (!drawing) return; drawing = false; if (!revealed && clearedRatio() > 0.09) finish(); });
   }
 
   /* ---------- Cake ---------- */
