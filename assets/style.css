@@ -424,6 +424,19 @@ body.lb-open { overflow: hidden; }
 .mars-names { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.2rem; }
 .mars-item { font-family: var(--body); font-size: var(--step-1); color: var(--ink); }
 .mars-item b { font-family: var(--display); font-weight: 700; color: var(--gold-deep); font-size: 1.15em; }
+/* Animated MARS constellation (Family Corner) */
+.mars-sub { color: var(--ink-2); font-style: italic; margin: 0.2rem 0 1.5rem; }
+.mars-orbit { position: relative; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 1.4rem; max-width: 520px; margin: 0 auto; }
+.mars-orbit::before { content: ""; position: absolute; top: 29px; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, var(--hair) 20%, var(--hair) 80%, transparent); transform: scaleX(0); transform-origin: center; transition: transform .9s cubic-bezier(.2,.7,.2,1) .15s; }
+.mars.in .mars-orbit::before { transform: scaleX(1); }
+.mars-node { display: grid; justify-items: center; gap: 0.45rem; opacity: 0; transform: translateY(14px) scale(.82); }
+.mars.in .mars-node { animation: node-pop .6s cubic-bezier(.34,1.5,.5,1) both; animation-delay: calc(var(--i) * 0.14s + 0.25s); }
+@keyframes node-pop { to { opacity: 1; transform: none; } }
+.mars-ring { position: relative; z-index: 1; width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; font-family: var(--display); font-weight: 700; font-size: 1.6rem; color: var(--gold-2); border: 1.5px solid var(--gold-deep); background: radial-gradient(circle at 38% 32%, color-mix(in oklab, var(--gold) 26%, var(--paper-2)), var(--paper)); box-shadow: 0 0 0 4px color-mix(in oklab, var(--gold) 12%, transparent), 0 6px 16px oklch(0.1 0.03 350 / .5); }
+.mars.in .mars-ring { animation: ring-glow 3.2s ease-in-out infinite; animation-delay: calc(var(--i) * 0.14s + 1s); }
+@keyframes ring-glow { 0%, 100% { box-shadow: 0 0 0 4px color-mix(in oklab, var(--gold) 12%, transparent), 0 6px 16px oklch(0.1 0.03 350 / .5); } 50% { box-shadow: 0 0 0 5px color-mix(in oklab, var(--gold) 22%, transparent), 0 0 22px color-mix(in oklab, var(--gold) 42%, transparent); } }
+.mars-name { font-family: var(--body); font-size: 1.05rem; color: var(--ink); }
+@media (prefers-reduced-motion: reduce) { .mars-node { opacity: 1; transform: none; } .mars-orbit::before { transform: scaleX(1); } }
 
 .game { position: relative; margin-top: 3rem; background: radial-gradient(120% 100% at 50% 0, var(--paper-2), var(--paper)); border: 1px solid color-mix(in oklab, var(--gold) 45%, transparent); border-radius: 18px; padding: clamp(1.4rem, 5vw, 2.6rem) clamp(1rem, 4vw, 2rem); overflow: hidden; }
 .arena.gone { display: none; }

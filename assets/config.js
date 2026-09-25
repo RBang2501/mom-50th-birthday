@@ -90,8 +90,8 @@ window.CONFIG = {
     hint: "Golden Jubilee",
     scratchLabel: "Scratch to reveal your gift",
     prizeEmoji: "🪙",
-    prize: "Gold Set",
-    message: "For being the most amazing person and completing your cute little 50 years, you are hereby awarded GOLD — by the Council of the MARS Family. 💛",
+    prize: "A Gold Set",
+    message: "For being the most amazing person and completing your cute little 50 years — you are hereby awarded a set of pure gold, by the Council of the MARS Family. 💛",
     council: [ ["M", "Manisha"], ["A", "Ashrit"], ["R", "Rakshit"], ["S", "Sanjay"] ],
   },
 

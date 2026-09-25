@@ -573,10 +573,10 @@
     canvas.addEventListener("pointerdown", function (e) { if (revealed) return; drawing = true; scratch(pos(e)); if (e.cancelable) e.preventDefault(); });
     canvas.addEventListener("pointermove", function (e) {
       if (!drawing || revealed) return; scratch(pos(e));
-      if (Date.now() - lastCheck > 260) { lastCheck = Date.now(); if (clearedRatio() > 0.5) finish(); }
+      if (Date.now() - lastCheck > 150) { lastCheck = Date.now(); if (clearedRatio() > 0.32) finish(); }
       if (e.cancelable) e.preventDefault();
     });
-    window.addEventListener("pointerup", function () { if (!drawing) return; drawing = false; if (!revealed && clearedRatio() > 0.42) finish(); });
+    window.addEventListener("pointerup", function () { if (!drawing) return; drawing = false; if (!revealed && clearedRatio() > 0.2) finish(); });
   }
 
   /* ---------- Cake ---------- */
