@@ -95,11 +95,22 @@ window.CONFIG = {
     council: [ ["M", "Manisha"], ["A", "Ashrit"], ["R", "Rakshit"], ["S", "Sanjay"] ],
   },
 
-  family: [         // family corner
-    { src: "", cap: "The whole gang" },
-    { src: "", cap: "With Dad" },
-    { src: "", cap: "Festival day" },
-    { src: "", cap: "Sunday lunch" },
+  family: [         // family corner — masonry photo wall (add a cap: "..." for a caption)
+    { src: "photos/family1.jpg" },
+    { src: "photos/family2.jpg" },
+    { src: "photos/family3.jpg" },
+    { src: "photos/family4.jpg" },
+    { src: "photos/family5.jpg" },
+    { src: "photos/family6.jpg" },
+    { src: "photos/family7.jpg" },
+    { src: "photos/family8.jpg" },
+    { src: "photos/family9.jpg" },
+    { src: "photos/family10.jpg" },
+    { src: "photos/family11.jpg" },
+    { src: "photos/family12.jpg" },
+    { src: "photos/family13.jpg" },
+    { src: "photos/family14.jpg" },
+    { src: "photos/family15.jpg" },
   ],
 
   // Lekru page banners — full-width & swipeable at the top. Add 3–4 photo paths.
