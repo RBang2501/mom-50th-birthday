@@ -49,7 +49,7 @@ window.CONFIG = {
   cuteMoments: [
     { type: "video", src: "photos/cute-laugh.mp4",     title: "Hehe",                    msg: "Kar di phir koi cutu harkat." },
     { type: "image", src: "photos/cutu.jpg",           title: "Caught Red-Handed",       msg: "Seat number 68 aur haath mein snacks. Moyy ka rule: pet pehle, view baad mein." },
-    { type: "video", src: "photos/golden-hour.mp4",    title: "Full Bollywood Mode",     msg: "Ek purana gaana kya baja, Moyy seedha heroine mode mein. Full filmy, full cute." },
+    { type: "video", src: "photos/golden-hour.mp4",    title: "Full Bollywood Mode",     msg: "Ek purana gaana kya baja, full filmy, full cute." },
     { type: "image", src: "photos/hehe.jpg",           title: "Mastikhor Kanha",         msg: "Kaan pakda gaya. Maiyaa, sorry sorry maiyaaa!" },
     { type: "video", src: "photos/batting.mp4",        title: "Cricket Moyy",            msg: "Kidhar gayi ball, kidhar gayii? Are are, bacha balance!" },
     { type: "image", src: "photos/air-hockey.jpg",     title: "Full Concentration Mode", msg: "Yeh waala look aa gaya? Ab haarne ki baat hi mat karo." },
@@ -57,7 +57,7 @@ window.CONFIG = {
     { type: "image", src: "photos/murugan-aunty.jpg",  title: "Murugan Aunty",           msg: "Kasavu saree, gajra aur woh signature nazar. South ki asli aunty, full attitude." },
     { type: "video", src: "photos/pool.mp4",           title: "Pool Champion (Almost)",  msg: "Itna time liya aim karne mein, aur phir woh cute waala foul." },
     { type: "image", src: "photos/little-moyy.jpg",    title: "Chhoti Si Moyy",          msg: "Beta lamba ho gaya, par boss abhi bhi Moyy hi hai." },
-    { type: "video", src: "photos/bowling.mp4",        title: "Strike?",                 msg: "Ball chhodi, aankhein band, aur dua. Is baar bacha le re baba!" },
+    { type: "video", src: "photos/bowling.mp4",        title: "Strike?",                 msg: "Is baar bacha le re baba!" },
     { type: "image", src: "photos/buaaaa.jpg",         title: "Pyari Bua",               msg: "Woh bua jo sabko hasati hai." },
     { type: "video", src: "photos/diwali-splash.mp4",  title: "Kuch Bhi",                msg: "Nahi Nahi, Kuch Bhiiii !!!!" },
     { type: "image", src: "photos/coffee-date.jpg",    title: "Coffee Date",             msg: "Cold coffee, aur Moyy ki smile on point." },
@@ -83,7 +83,6 @@ window.CONFIG = {
     { src: "photos/college14.jpg", title: "Till We Meet Again",         msg: "The last frame of a golden chapter, friends forever." },
   ],
   northSouth: [],    // North & South (the marriage chapter)
-  friends: [],       // Friends
   gift: [],          // (legacy, unused)
 
   // Gift page — scratch off the gold cover to reveal the gift underneath.

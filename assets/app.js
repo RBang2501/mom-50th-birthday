@@ -19,7 +19,6 @@
     { href: "north-south.html", label: "North & South" },
     { href: "lekrus.html", label: (C.labels && C.labels.lekrus && C.labels.lekrus.title) || "Mom's Lekrus" },
     { href: "family-corner.html", label: "Family Corner" },
-    { href: "friends.html", label: "Dear Friends" },
     { href: "cute-moments.html", label: "Fun Moments" },
     { href: "gift.html", label: "Gift" },
   ];
@@ -559,18 +558,7 @@
       ctx.fillStyle = "rgba(55,38,8,0.72)";
       ctx.font = "italic " + Math.round(Math.min(w, h) * 0.052) + "px 'Cormorant Garamond', Georgia, serif";
       ctx.fillText(cfg.scratchLabel || "Scratch to reveal your gift", w / 2, h * 0.54);
-      // little coin hint
-      // gold coin
-      var cx = w / 2, cy = h * 0.70, r = Math.min(w, h) * 0.085;
-      var cg = ctx.createRadialGradient(cx - r * 0.3, cy - r * 0.3, r * 0.2, cx, cy, r);
-      cg.addColorStop(0, "#fff2c2"); cg.addColorStop(0.5, "#e8c25a"); cg.addColorStop(1, "#9c7620");
-      ctx.beginPath(); ctx.arc(cx, cy, r, 0, 7); ctx.fillStyle = cg; ctx.fill();
-      ctx.lineWidth = Math.max(2, r * 0.12); ctx.strokeStyle = "rgba(120,85,15,0.85)"; ctx.stroke();
-      ctx.fillStyle = "rgba(85,58,8,0.92)"; ctx.textBaseline = "middle";
-      ctx.font = "700 " + Math.round(r * 1.05) + "px 'Playfair Display', Georgia, serif";
-      ctx.textAlign = "center";
-      ctx.fillText("M", cx, cy);
-      ctx.textBaseline = "alphabetic";
+      // (no coin on the cover; the gift coin appears only after scratching)
     }
     function pos(e) { var r = canvas.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
     function scratch(p) {
