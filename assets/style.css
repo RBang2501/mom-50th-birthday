@@ -411,7 +411,7 @@ body.lb-open { overflow: hidden; }
 @keyframes mascot-happy { 0%,100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-14px) rotate(4deg); } }
 @keyframes mascot-sad { 0%,100% { transform: translateX(0) rotate(0); } 20% { transform: translateX(-8px) rotate(-6deg); } 40% { transform: translateX(8px) rotate(6deg); } 60% { transform: translateX(-6px) rotate(-4deg); } 80% { transform: translateX(6px) rotate(4deg); } }
 
-.arena { position: relative; min-height: 150px; display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; justify-content: center; margin: 0.9rem 0 0.2rem; }
+.arena { position: relative; min-height: 96px; display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; justify-content: center; margin: 0.7rem 0 0.2rem; }
 .vote { min-height: var(--tap); padding: 0.9rem 2rem; border-radius: 999px; font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.14em; font-size: 1rem; cursor: pointer; border: 1px solid var(--gold-deep); -webkit-tap-highlight-color: transparent; transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
 .vote.best { background: linear-gradient(120deg, var(--gold-deep), var(--gold)); color: var(--paper); }
 .vote.best:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 10px 24px oklch(0.55 0.12 75 / .35); }

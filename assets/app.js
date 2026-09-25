@@ -309,7 +309,7 @@
   function renderGrid() {
     $$("[data-grid]").forEach(function (box) {
       var items = C[box.getAttribute("data-grid")] || [];
-      var LIMIT = 4;
+      var LIMIT = 6;
       var cards = items.map(function (p, i) {
         var extra = i >= LIMIT ? " is-extra" : "";
         if (!p.src) return '<figure class="lg-card' + extra + '"><div class="placeholder">Add photo</div></figure>';

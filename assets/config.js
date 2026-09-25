@@ -67,17 +67,17 @@ window.CONFIG = {
   // For a video card add type:"video". Leave a section empty → shows "Coming soon".
   // College Time — royal cards (same style as Lil Girl). Replace title/msg with the real words.
   collegeTime: [
-    { src: "photos/college1.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
-    { src: "photos/college2.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
-    { src: "photos/college3.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
     { src: "photos/college4.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
     { src: "photos/college5.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
     { src: "photos/college6.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
-    { src: "photos/college7.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/college2.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
     { src: "photos/college8.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
-    { src: "photos/college9.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
-    { src: "photos/college10.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
     { src: "photos/college11.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/college9.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/college3.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/college1.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/college7.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/college10.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
     { src: "photos/college12.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
     { src: "photos/college13.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
     { src: "photos/college14.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
