@@ -111,6 +111,8 @@ window.CONFIG = {
     { src: "photos/family13.jpg" },
     { src: "photos/family14.jpg" },
     { src: "photos/family15.jpg" },
+    { src: "photos/family16.jpg" },
+    { src: "photos/family17.jpg" },
   ],
 
   // Lekru page banners — full-width & swipeable at the top. Add 3–4 photo paths.
