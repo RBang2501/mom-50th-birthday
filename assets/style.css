@@ -457,6 +457,17 @@ body[data-page="north-south"] .lg-card img { aspect-ratio: 3 / 4; object-fit: co
 .mars-name { font-family: var(--body); font-size: 1.05rem; color: var(--ink); }
 @media (prefers-reduced-motion: reduce) { .mars-node { opacity: 1; transform: none; } .mars-orbit::before { transform: scaleX(1); } }
 
+/* ---------- Home photo showcase (framed portraits) ---------- */
+.photo-showcase { display: grid; grid-template-columns: 1fr; gap: 1.2rem; max-width: 600px; margin: 1.8rem auto 0; }
+@media (min-width: 620px) { .photo-showcase { grid-template-columns: 1fr 1fr; } }
+.showcase-photo { position: relative; margin: 0; border-radius: 18px; overflow: hidden; border: 1px solid var(--hair); box-shadow: var(--shadow); background: var(--paper-2); transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease; }
+.showcase-photo:hover { transform: translateY(-4px); box-shadow: 0 26px 52px -22px oklch(0.08 0.03 350 / .85); }
+.showcase-photo::after { content: ""; position: absolute; top: -1px; right: -1px; width: 58px; height: 58px; pointer-events: none; z-index: 1; background: radial-gradient(120% 120% at 100% 0, color-mix(in oklab, var(--gold) 45%, transparent), transparent 70%); }
+.showcase-photo .t-open { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.showcase-photo img { width: 100%; display: block; aspect-ratio: 3 / 4; object-fit: cover; transition: transform .3s ease; }
+.showcase-photo:hover img { transform: scale(1.03); }
+.showcase-photo figcaption { padding: 0.7rem 0.9rem; text-align: center; font-style: italic; color: var(--ink-2); border-top: 1px solid var(--hair); }
+
 .game { position: relative; margin-top: 3rem; background: radial-gradient(120% 100% at 50% 0, var(--paper-2), var(--paper)); border: 1px solid color-mix(in oklab, var(--gold) 45%, transparent); border-radius: 18px; padding: clamp(1.4rem, 5vw, 2.6rem) clamp(1rem, 4vw, 2rem); overflow: hidden; }
 .arena.gone { display: none; }
 .reveal-cta { text-align: center; margin-top: 1.1rem; }

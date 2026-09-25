@@ -33,6 +33,7 @@
     renderCarousels();
     renderBanners();
     renderGrid();
+    renderPhotos();
     renderWishes();
     setupLightbox();
     setupCake();
@@ -337,6 +338,19 @@
         var expanded = box.classList.toggle("grid-expanded");
         moreBtn.textContent = expanded ? "See less" : "See more";
       });
+    });
+  }
+
+  /* ---------- Photo showcase (framed portraits) ---------- */
+  function renderPhotos() {
+    $$("[data-photos]").forEach(function (box) {
+      var items = (C[box.getAttribute("data-photos")] || []).map(function (p) { return typeof p === "string" ? { src: p } : p; }).filter(function (p) { return p && p.src; });
+      if (!items.length) { box.innerHTML = '<p class="empty-note">Photos coming soon 💛</p>'; return; }
+      box.innerHTML = items.map(function (p) {
+        return '<figure class="showcase-photo reveal"><button type="button" class="t-open" data-kind="image" data-full="' + esc(p.src) +
+          '" data-title="' + esc(p.cap || "") + '" aria-label="Open photo"><img src="' + esc(p.src) + '" alt="' + esc(p.cap || "") + '" loading="lazy" /></button>' +
+          (p.cap ? '<figcaption>' + esc(p.cap) + "</figcaption>" : "") + "</figure>";
+      }).join("");
     });
   }
 

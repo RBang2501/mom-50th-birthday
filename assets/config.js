@@ -13,6 +13,9 @@ window.CONFIG = {
   wishText: "Here's to you, always.",
   wishSub: "Fifty candles, and not one shines as bright as you do. We love you. ✨",
 
+  // ---- Home: photo showcase (portraits of Mom). Add {src} or "path" strings. ----
+  momPhotos: [ "photos/mom1.jpg", "photos/mom2.jpg" ],
+
   // ---- 50 reasons (home). Add up to 50; the grid adapts. ----
   reasons: [
     "You always know exactly what to say.",
@@ -49,7 +52,7 @@ window.CONFIG = {
   cuteMoments: [
     { type: "video", src: "photos/control-majnu.mp4",  title: "Control, Majnu!",         msg: "Kuch kar bhi toh nahi sakte, hamari pyari Moyy hai." },
     { type: "video", src: "photos/cute-laugh.mp4",     title: "Hehe",                    msg: "Kar di phir koi cutu harkat." },
-    { type: "image", src: "photos/cutu.jpg",           title: "Cuteness Overload",       msg: "Seat number 68, snacks haath mein. Caught red handed!" },
+    { type: "image", src: "photos/cutu.jpg",           title: "Caught Red Handed",       msg: "Seat number 68, aur snacks haath mein. Pakdi gayi!" },
     { type: "video", src: "photos/golden-hour.mp4",    title: "Full Bollywood Mode",     msg: "Ek purana gaana kya baja, full filmy, full cute." },
     { type: "image", src: "photos/hehe.jpg",           title: "🥺",                       msg: "Kaan pakda gaya. Maiyaa, sorry sorry maiyaaa!" },
     { type: "video", src: "photos/batting.mp4",        title: "Cricket Moyy",            msg: "Kidhar gayi ball, kidhar gayii? Are are, bacha balance!" },
