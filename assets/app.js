@@ -62,7 +62,7 @@
       return '<a href="' + n.href + '"' + cur + '>' + esc(n.label) + (locked ? ' <span class="lock">🔒</span>' : "") + "</a>";
     }).join("");
     nav.innerHTML =
-      '<a class="brand" href="index.html">' + esc((C.brand && C.brand[0]) || "") + "<b>" + esc((C.brand && C.brand[1]) || C.momName || "Mom") + "</b></a>" +
+      '<a class="brand" href="index.html">' + esc((typeof C.brand === "string" ? C.brand : (C.brand && C.brand[1])) || C.momName || "Mom") + "</a>" +
       '<button class="nav-toggle" aria-label="Menu" aria-expanded="false">' +
       "<span></span><span></span><span></span></button>" +
       '<div class="nav-links">' + links + "</div>";
@@ -319,7 +319,7 @@
   function renderGrid() {
     $$("[data-grid]").forEach(function (box) {
       var items = C[box.getAttribute("data-grid")] || [];
-      var LIMIT = 6;
+      var LIMIT = 4;
       var cards = items.map(function (p, i) {
         var extra = i >= LIMIT ? " is-extra" : "";
         if (!p.src) return '<figure class="lg-card' + extra + '"><div class="placeholder">Add photo</div></figure>';
@@ -330,7 +330,7 @@
         return '<figure class="lg-card' + extra + '"><button type="button" class="t-open" data-kind="' + (isVideo ? "video" : "image") +
           '" data-full="' + esc(p.src) + '" data-title="' + esc(p.title || "") + '" data-msg="' + esc(p.msg || "") + '" aria-label="Open">' + thumb + "</button></figure>";
       }).join("");
-      var more = items.length > LIMIT ? '<div class="see-more-wrap"><button class="btn ghost see-more" type="button" data-more>See more</button></div>' : "";
+      var more = items.length > LIMIT ? '<div class="see-more-wrap"><button class="see-more" type="button" data-more>See more</button></div>' : "";
       box.innerHTML = '<div class="lg-cards">' + cards + "</div>" + more;
       var moreBtn = box.querySelector("[data-more]");
       if (moreBtn) moreBtn.addEventListener("click", function () {
