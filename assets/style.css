@@ -107,6 +107,8 @@ img { max-width: 100%; display: block; }
 .page-title em { font-style: italic; color: var(--accent); }
 .lead { color: var(--ink-2); max-width: 62ch; font-size: var(--step-1); }
 .center .lead { margin-inline: auto; }
+.pull-quote { margin: 0.2rem auto 1.1rem; max-width: 42ch; padding: 0 0.6rem; font-family: var(--body); font-style: italic; font-size: var(--step-2); line-height: 1.35; color: var(--gold-2); text-wrap: balance; }
+.lead { text-wrap: balance; }
 
 /* ---------- Deco divider (SVG-free, pure CSS fan) ---------- */
 .deco { display: flex; align-items: center; justify-content: center; gap: 0.9rem; margin: 1.5rem 0 2.6rem; color: var(--gold-deep); }
@@ -276,14 +278,14 @@ body.lb-open { overflow: hidden; }
   background-size: 250% 250%; animation: lb-sheen 5.5s ease-in-out infinite; }
 .lb-media { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--hair); background: #000; }
 .lb-media img, .lb-media video { display: block; width: 100%; max-height: 62vh; object-fit: contain; background: #000; }
-.lb-title { font-family: var(--script); font-weight: 400; color: var(--gold-2); text-align: center; font-size: clamp(1.65rem, 7vw, 2.25rem); line-height: 1.06; margin: 0.7rem 0 0; text-shadow: 0 1px 10px oklch(0.8 0.11 88 / .25); }
+.lb-title { font-family: var(--script); font-weight: 400; color: var(--gold-2); text-align: center; font-size: clamp(1.65rem, 7vw, 2.25rem); line-height: 1.06; margin: 0.7rem 0 0; text-shadow: 0 1px 10px oklch(0.8 0.11 88 / .25); text-wrap: balance; }
 .lb-title[hidden] { display: none; }
 .lb-divider { display: flex; align-items: center; justify-content: center; gap: 0.7rem; margin: 0.55rem 0 0.5rem; }
 .lb-divider[hidden] { display: none; }
 .lb-divider span { height: 1px; width: min(120px, 28%); background: linear-gradient(90deg, transparent, var(--hair)); }
 .lb-divider span:last-child { background: linear-gradient(90deg, var(--hair), transparent); }
 .lb-divider i { width: 7px; height: 7px; transform: rotate(45deg); background: var(--gold-deep); box-shadow: 0 0 9px color-mix(in oklab, var(--gold) 60%, transparent); }
-.lb-msg { margin: 0.1rem 0.4rem 0.35rem; text-align: center; color: var(--ink); font-family: var(--body); font-size: var(--step-1); line-height: 1.5; font-style: italic; }
+.lb-msg { margin: 0.1rem 0.4rem 0.35rem; text-align: center; color: var(--ink); font-family: var(--body); font-size: var(--step-1); line-height: 1.5; font-style: italic; text-wrap: balance; }
 .lb-msg[hidden] { display: none; }
 .lb-close { position: absolute; top: 14px; right: 14px; z-index: 3; width: 38px; height: 38px; border-radius: 50%; border: 1px solid color-mix(in oklab, var(--gold) 55%, transparent); background: oklch(0.14 0.02 20 / .6); color: var(--gold-2); font-size: 1.35rem; line-height: 1; cursor: pointer; -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); }
 @keyframes lb-pop { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
@@ -400,6 +402,28 @@ body.lb-open { overflow: hidden; }
 .lg-card.is-extra { display: none; }
 .grid-expanded .lg-card.is-extra { display: block; animation: pop-in .4s ease both; }
 .see-more-wrap { text-align: center; margin-top: 1.1rem; }
+
+/* ---------- Gift scratch card ---------- */
+.scratch-wrap { max-width: 440px; margin: 2rem auto 0; }
+.scratch-card { position: relative; border-radius: 18px; overflow: hidden; border: 1px solid var(--gold-deep); box-shadow: inset 0 0 0 1px var(--hair), var(--shadow); aspect-ratio: 3 / 4; background: radial-gradient(120% 90% at 50% 0, color-mix(in oklab, var(--gold) 10%, var(--paper-2)), var(--paper)); }
+.scratch-prize { position: absolute; inset: 0; display: grid; align-content: center; justify-items: center; gap: 0.3rem; text-align: center; padding: clamp(1.2rem, 5vw, 2rem); }
+.sc-emoji { font-size: clamp(2.8rem, 12vw, 4.2rem); line-height: 1; }
+.sc-kicker { font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.3em; font-size: 0.66rem; color: var(--ink-2); }
+.sc-prize { font-family: var(--display); font-weight: 700; font-size: clamp(2rem, 9vw, 3rem); line-height: 1; background: linear-gradient(100deg, var(--gold-deep), var(--gold-2) 50%, var(--gold-deep)); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.3rem; }
+.sc-msg { color: var(--ink-2); font-style: italic; font-size: 0.98rem; line-height: 1.42; margin: 0.2rem 0 0.6rem; max-width: 30ch; }
+.sc-council-title { font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.62rem; color: var(--gold-deep); margin-top: 0.2rem; }
+.scratch-cover { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: grab; transition: opacity .5s ease; }
+.scratch-cover:active { cursor: grabbing; }
+.scratch-card.revealed .scratch-cover { opacity: 0; pointer-events: none; }
+.scratch-card.revealed .scratch-prize { animation: pop-in .5s ease both; }
+
+/* ---------- MARS family legend (Family Corner + gift) ---------- */
+.mars { text-align: center; margin: 1.8rem auto 0; }
+.mars-title { font-family: var(--display); font-size: var(--step-2); margin-bottom: 0.7rem; }
+.mars-title em { font-style: italic; color: var(--accent); }
+.mars-names { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.2rem; }
+.mars-item { font-family: var(--body); font-size: var(--step-1); color: var(--ink); }
+.mars-item b { font-family: var(--display); font-weight: 700; color: var(--gold-deep); font-size: 1.15em; }
 
 .game { position: relative; margin-top: 3rem; background: radial-gradient(120% 100% at 50% 0, var(--paper-2), var(--paper)); border: 1px solid color-mix(in oklab, var(--gold) 45%, transparent); border-radius: 18px; padding: clamp(1.4rem, 5vw, 2.6rem) clamp(1rem, 4vw, 2rem); overflow: hidden; }
 .arena.gone { display: none; }

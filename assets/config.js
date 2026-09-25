@@ -67,24 +67,33 @@ window.CONFIG = {
   // For a video card add type:"video". Leave a section empty → shows "Coming soon".
   // College Time — royal cards (same style as Lil Girl). Replace title/msg with the real words.
   collegeTime: [
-    { src: "photos/college4.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
-    { src: "photos/college5.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
-    { src: "photos/college6.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
-    { src: "photos/college2.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
-    { src: "photos/college8.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
-    { src: "photos/college11.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
-    { src: "photos/college9.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
-    { src: "photos/college3.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
-    { src: "photos/college1.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
-    { src: "photos/college7.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
-    { src: "photos/college10.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
-    { src: "photos/college12.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
-    { src: "photos/college13.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
-    { src: "photos/college14.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/college4.jpg",  title: "Where It All Began",         msg: "Head down, dreams up — the long road to becoming a doctor starts here." },
+    { src: "photos/college5.jpg",  title: "Files, Faith & First Steps", msg: "Notes held tight, Dhanvantari watching over the future doctors." },
+    { src: "photos/college6.jpg",  title: "Canteen Confessions",        msg: "Every big day deserved a little treat and a lot of gossip." },
+    { src: "photos/college2.jpg",  title: "The Hostel Gang",            msg: "Between lectures, the corridor became the whole world." },
+    { src: "photos/college8.jpg",  title: "Off the Beaten Path",        msg: "New roads, a borrowed hat, and not a care in the world." },
+    { src: "photos/college11.jpg", title: "A Day by the Water",         msg: "Books shut, shoes off — an afternoon stolen by the shore." },
+    { src: "photos/college9.jpg",  title: "Golden Afternoons",          msg: "Piled together in the grass, with time slowing just for them." },
+    { src: "photos/college3.jpg",  title: "Under the College Sign",     msg: "Government Ayurvedic College, Nagpur — where the story found its home." },
+    { src: "photos/college1.jpg",  title: "Full Filmy Mode",            msg: "Four friends, one filmy pose, and a whole lot of joy." },
+    { src: "photos/college7.jpg",  title: "The Whole Batch",            msg: "The girls who turned classmates into family." },
+    { src: "photos/college10.jpg", title: "Dressed to the Nines",       msg: "Saris pressed, best smiles on — one for the frame." },
+    { src: "photos/college12.jpg", title: "The White Coats",            msg: "Aprons on, stethoscopes ready — the dream in uniform at last." },
+    { src: "photos/college14.jpg", title: "Till We Meet Again",         msg: "The last frame of a golden chapter — friends, forever." },
   ],
   northSouth: [],    // North & South (the marriage chapter)
   friends: [],       // Friends
-  gift: [],          // Gift
+  gift: [],          // (legacy, unused)
+
+  // Gift page — scratch off the gold cover to reveal the gift underneath.
+  giftCard: {
+    hint: "Golden Jubilee",
+    scratchLabel: "Scratch to reveal your gift",
+    prizeEmoji: "🪙",
+    prize: "Gold Set",
+    message: "For being the most amazing person and completing your cute little 50 years, you are hereby awarded GOLD — by the Council of the MARS Family. 💛",
+    council: [ ["M", "Manisha"], ["A", "Ashrit"], ["R", "Rakshit"], ["S", "Sanjay"] ],
+  },
 
   family: [         // family corner
     { src: "", cap: "The whole gang" },

@@ -21,7 +21,6 @@
     { href: "family-corner.html", label: "Family Corner" },
     { href: "friends.html", label: "Dear Friends" },
     { href: "cute-moments.html", label: "Fun Moments" },
-    { href: "memories.html", label: "Yearbook" },
     { href: "gift.html", label: "Gift" },
   ];
 
@@ -39,6 +38,7 @@
     setupLightbox();
     setupCake();
     setupLekruGame();
+    setupScratchCard();
     setupWall();
     setupShare();
     setupHeroSparkles();
@@ -501,6 +501,82 @@
     });
 
     replay.addEventListener("click", replayGame);
+  }
+
+  /* ---------- Gift scratch card ---------- */
+  function setupScratchCard() {
+    var card = $("#scratch-card"); if (!card) return;
+    var canvas = $("#scratch-cover", card); if (!canvas) return;
+    var ctx = canvas.getContext("2d");
+    var cfg = C.giftCard || {};
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var revealed = false, drawing = false, lastCheck = 0;
+
+    // Build the prize that sits underneath the scratch cover.
+    var prizeBox = $("#scratch-prize", card);
+    if (prizeBox) {
+      var council = (cfg.council || []).map(function (c) {
+        return '<span class="mars-item"><b>' + esc(c[0]) + "</b>" + esc(String(c[1]).slice(1)) + "</span>";
+      }).join("");
+      prizeBox.innerHTML =
+        '<div class="sc-emoji">' + esc(cfg.prizeEmoji || "🪙") + "</div>" +
+        '<div class="sc-kicker">You are awarded</div>' +
+        '<div class="sc-prize">' + esc(cfg.prize || "Gold") + "</div>" +
+        '<p class="sc-msg">' + esc(cfg.message || "") + "</p>" +
+        (council ? '<div class="sc-council-title">Council of the MARS Family</div><div class="mars-names">' + council + "</div>" : "");
+    }
+
+    function paintCover() {
+      var w = card.clientWidth, h = card.clientHeight;
+      if (!w || !h) return;
+      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+      canvas.style.width = w + "px"; canvas.style.height = h + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var g = ctx.createLinearGradient(0, 0, w, h);
+      g.addColorStop(0, "#7f5f1f"); g.addColorStop(0.35, "#d7b24e"); g.addColorStop(0.5, "#f6e29a"); g.addColorStop(0.65, "#d7b24e"); g.addColorStop(1, "#7f5f1f");
+      ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+      ctx.fillStyle = "rgba(255,255,255,0.16)";
+      for (var i = 0; i < 46; i++) { ctx.beginPath(); ctx.arc(Math.random() * w, Math.random() * h, Math.random() * 2 + 0.5, 0, 7); ctx.fill(); }
+      ctx.textAlign = "center";
+      ctx.fillStyle = "rgba(55,38,8,0.9)";
+      var hint = (cfg.hint || "Golden Jubilee").toUpperCase();
+      var fs = Math.round(Math.min(w, h) * 0.11);
+      ctx.font = "600 " + fs + "px 'Cormorant SC', Georgia, serif";
+      var tw = ctx.measureText(hint).width, maxw = w * 0.82;
+      if (tw > maxw) { fs = Math.floor(fs * maxw / tw); ctx.font = "600 " + fs + "px 'Cormorant SC', Georgia, serif"; }
+      ctx.fillText(hint, w / 2, h * 0.45);
+      ctx.fillStyle = "rgba(55,38,8,0.72)";
+      ctx.font = "italic " + Math.round(Math.min(w, h) * 0.052) + "px 'Cormorant Garamond', Georgia, serif";
+      ctx.fillText(cfg.scratchLabel || "Scratch to reveal your gift", w / 2, h * 0.54);
+      // little coin hint
+      ctx.font = Math.round(Math.min(w, h) * 0.11) + "px serif";
+      ctx.fillText("🪙", w / 2, h * 0.68);
+    }
+    function pos(e) { var r = canvas.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
+    function scratch(p) {
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.beginPath(); ctx.arc(p.x, p.y, 26, 0, 7); ctx.fill();
+      ctx.globalCompositeOperation = "source-over";
+    }
+    function clearedRatio() {
+      var data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+      var clear = 0, n = 0;
+      for (var i = 3; i < data.length; i += 4 * 50) { n++; if (data[i] === 0) clear++; }
+      return n ? clear / n : 0;
+    }
+    function finish() { if (revealed) return; revealed = true; card.classList.add("revealed"); if (window.fireConfetti) window.fireConfetti(); }
+
+    paintCover();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (!revealed) paintCover(); });
+    window.addEventListener("resize", function () { if (!revealed) paintCover(); });
+
+    canvas.addEventListener("pointerdown", function (e) { if (revealed) return; drawing = true; scratch(pos(e)); if (e.cancelable) e.preventDefault(); });
+    canvas.addEventListener("pointermove", function (e) {
+      if (!drawing || revealed) return; scratch(pos(e));
+      if (Date.now() - lastCheck > 260) { lastCheck = Date.now(); if (clearedRatio() > 0.5) finish(); }
+      if (e.cancelable) e.preventDefault();
+    });
+    window.addEventListener("pointerup", function () { if (!drawing) return; drawing = false; if (!revealed && clearedRatio() > 0.42) finish(); });
   }
 
   /* ---------- Cake ---------- */
