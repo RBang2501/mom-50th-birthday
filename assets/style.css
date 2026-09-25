@@ -391,7 +391,7 @@ body.lb-open { overflow: hidden; }
 .banner-rule { display: block; width: 46px; height: 2px; margin: 0.5rem auto 0.55rem; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
 .banner-msg { margin: 0; margin-inline: auto; max-width: 40ch; font-family: var(--body); font-style: italic; font-size: var(--step-0); line-height: 1.42; color: var(--ink); text-shadow: 0 1px 6px oklch(0.10 0.02 20 / 0.85); text-wrap: balance; }
 .banner-slide .t-open { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; }
-.banner-slide img { width: 100%; height: auto; max-height: 82svh; object-fit: contain; display: block; margin: 0 auto; }
+.banner-slide img { width: 100%; height: 58svh; object-fit: contain; display: block; margin: 0 auto; background: #0d0a0c; }
 .banner-ph { border-radius: 16px; border: 1px dashed var(--hair); aspect-ratio: 3/2; display: grid; place-items: center; color: var(--ink-2); font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.22em; font-size: 0.72rem; background: linear-gradient(160deg, var(--paper-2), var(--paper-3)); }
 .banner-dots { display: flex; gap: 0.5rem; justify-content: center; margin-top: 0.8rem; }
 .banner-dots .dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; background: color-mix(in oklab, var(--gold) 35%, var(--mute)); cursor: pointer; transition: transform .2s, background .2s; -webkit-tap-highlight-color: transparent; }

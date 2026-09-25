@@ -84,9 +84,9 @@ window.CONFIG = {
   ],
   // North & South banner (marriage chapter) — swipeable, styled like the Lekru banner.
   northSouthBanners: [
-    { src: "photos/ns-mom.jpg",     title: "The South",            msg: "The girl from the South, all grace and quiet strength." },
-    { src: "photos/ns-dad.jpg",     title: "The North",            msg: "The boy from the North, about to meet his match." },
-    { src: "photos/ns-wedding.jpg", title: "When North Met South", msg: "Two worlds, one wedding, and the start of the MARS family." },
+    { src: "photos/ns-mom.jpg",     title: "One World",     msg: "" },
+    { src: "photos/ns-dad.jpg",     title: "Another World", msg: "" },
+    { src: "photos/ns-wedding.jpg", title: "One Home",      msg: "" },
   ],
   gift: [],          // (legacy, unused)
 
