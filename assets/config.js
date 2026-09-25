@@ -65,23 +65,22 @@ window.CONFIG = {
 
   // New tabs — royal-card pages (one card per entry). Add { src, title, msg }.
   // For a video card add type:"video". Leave a section empty → shows "Coming soon".
-  // College Time — tap a photo to open it big. Add title/msg to any entry for a caption.
+  // College Time — royal cards (same style as Lil Girl). Replace title/msg with the real words.
   collegeTime: [
-    { type: "image", src: "photos/college1.jpg" },
-    { type: "image", src: "photos/college2.jpg" },
-    { type: "image", src: "photos/college3.jpg" },
-    { type: "image", src: "photos/college4.jpg" },
-    { type: "image", src: "photos/college5.jpg" },
-    { type: "image", src: "photos/college6.jpg" },
-    { type: "image", src: "photos/college7.jpg" },
-    { type: "image", src: "photos/college8.jpg" },
-    { type: "image", src: "photos/college9.jpg" },
-    { type: "image", src: "photos/college10.jpg" },
-    { type: "image", src: "photos/college11.jpg" },
-    { type: "image", src: "photos/college12.jpg" },
-    { type: "image", src: "photos/college13.jpg" },
-    { type: "image", src: "photos/college14.jpg" },
-    { type: "image", src: "photos/college15.png" },
+    { src: "photos/college1.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/college2.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/college3.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/college4.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/college5.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/college6.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/college7.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/college8.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/college9.jpg",  title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/college10.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/college11.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/college12.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/college13.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/college14.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
   ],
   northSouth: [],    // North & South (the marriage chapter)
   friends: [],       // Friends
@@ -97,7 +96,7 @@ window.CONFIG = {
   // Lekru page banners — full-width & swipeable at the top. Add 3–4 photo paths.
   lekruBanners: [
     "photos/LekruBanner1.jpg",
-    // "photos/LekruBanner2.jpg",
+    "photos/LekruBanner2.png",
     // "photos/LekruBanner3.jpg",
     // "photos/LekruBanner4.jpg",
   ],
