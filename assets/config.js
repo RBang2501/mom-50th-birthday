@@ -48,20 +48,20 @@ window.CONFIG = {
   // title + message you'll add later). type: "video" or "image".
   cuteMoments: [
     { type: "video", src: "photos/cute-laugh.mp4",     title: "Hehe",                    msg: "Kar di phir koi cutu harkat." },
-    { type: "image", src: "photos/cutu.jpg",           title: "Cuteness Overload",       msg: "Seat number 68 aur haath mein snacks. Moyy ka rule: pet pehle, view baad mein." },
+    { type: "image", src: "photos/cutu.jpg",           title: "Cuteness Overload",       msg: "Seat number 68, snacks haath mein. Caught red handed!" },
     { type: "video", src: "photos/golden-hour.mp4",    title: "Full Bollywood Mode",     msg: "Ek purana gaana kya baja, full filmy, full cute." },
     { type: "image", src: "photos/hehe.jpg",           title: "🥺",                       msg: "Kaan pakda gaya. Maiyaa, sorry sorry maiyaaa!" },
     { type: "video", src: "photos/batting.mp4",        title: "Cricket Moyy",            msg: "Kidhar gayi ball, kidhar gayii? Are are, bacha balance!" },
     { type: "image", src: "photos/air-hockey.jpg",     title: "Focus Focus!",            msg: "Yeh waala look aa gaya? Ab haarne ki baat hi mat karo." },
     { type: "video", src: "photos/udta-hi-phiro.mp4",  title: "Just Ladies Thing",       msg: "Haan, yeh karlo pehle.." },
     { type: "image", src: "photos/murugan-aunty.jpg",  title: "Murugan Aunty",           msg: "Kasavu saree, gajra aur woh signature nazar." },
-    { type: "video", src: "photos/pool.mp4",           title: "Pool Champion (Almost)",  msg: "Itna time leke, kar diya foul!" },
+    { type: "video", src: "photos/pool.mp4",           title: "Pool Champion",           msg: "Itna time leke, kar diya foul. Dhabbu things!" },
     { type: "image", src: "photos/little-moyy.jpg",    title: "Chhoti Si Moyy",          msg: "Beta lamba ho gaya, par boss abhi bhi Moyy hi hai." },
     { type: "video", src: "photos/bowling.mp4",        title: "Strike?",                 msg: "Is baar bacha le re baba!" },
-    { type: "image", src: "photos/buaaaa.jpg",         title: "Pyari Bua",               msg: "Woh bua jo sabko hasati hai." },
+    { type: "image", src: "photos/buaaaa.jpg",         title: "Pyari Bua",               msg: "Woh bua jo sabko hasati aur dhyaan rakhti hai." },
     { type: "video", src: "photos/diwali-splash.mp4",  title: "Kuch Bhi",                msg: "Nahi Nahi, Kuch Bhiiii !!!!" },
     { type: "image", src: "photos/coffee-date.jpg",    title: "Coffee Date",             msg: "Cold coffee, aur Moyy ki smile on point." },
-    { type: "video", src: "photos/control-majnu.mp4",  title: "Control, Majnu!",         msg: "Gaadi Moyy ke haath mein, aur sab peeche se: Control Majnu, control!" },
+    { type: "video", src: "photos/control-majnu.mp4",  title: "Control, Majnu!",         msg: "Kuch kar bhi toh nahi sakte, hamari pyari Moyy hai." },
   ],
 
   // New tabs — royal-card pages (one card per entry). Add { src, title, msg }.
@@ -84,9 +84,25 @@ window.CONFIG = {
   ],
   // North & South banner (marriage chapter) — swipeable, styled like the Lekru banner.
   northSouthBanners: [
-    { src: "photos/ns-mom.jpg",     title: "One World",     msg: "" },
-    { src: "photos/ns-dad.jpg",     title: "Another World", msg: "" },
-    { src: "photos/ns-wedding.jpg", title: "One Home",      msg: "" },
+    { src: "photos/ns-mom.jpg",     title: "One World",     msg: "The cute, innocent one, simple and straight from the heart." },
+    { src: "photos/ns-dad.jpg",     title: "Another World", msg: "The practical one, all logic and quiet discipline." },
+    { src: "photos/ns-wedding.jpg", title: "One Home",      msg: "So different in every way, and perfect together." },
+  ],
+  // North & South photo grid — 2 per row, uniform square cards, no captions.
+  northSouthPhotos: [
+    { src: "photos/nsg1.jpg" },
+    { src: "photos/nsg2.jpg" },
+    { src: "photos/nsg3.jpg" },
+    { src: "photos/nsg4.jpg" },
+    { src: "photos/nsg5.jpg" },
+    { src: "photos/nsg6.jpg" },
+    { src: "photos/nsg7.jpg" },
+    { src: "photos/nsg8.jpg" },
+    { src: "photos/nsg9.jpg" },
+    { src: "photos/nsg10.jpg" },
+    { src: "photos/nsg11.jpg" },
+    { src: "photos/nsg12.jpg" },
+    { src: "photos/nsg13.jpg" },
   ],
   gift: [],          // (legacy, unused)
 
