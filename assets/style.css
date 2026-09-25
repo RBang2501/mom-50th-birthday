@@ -404,6 +404,8 @@ body.lb-open { overflow: hidden; }
 .lg-card { position: relative; margin: 0; border-radius: 12px; overflow: hidden; background: var(--paper-2); border: 1px solid var(--hair); box-shadow: 0 6px 16px oklch(0.1 0.03 350 / .4); }
 .lg-card .t-open { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; position: relative; -webkit-tap-highlight-color: transparent; }
 .lg-card img, .lg-card video { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+/* North & South grid: show full photos (no crop) in uniform 3:4 cards */
+body[data-page="north-south"] .lg-card img { aspect-ratio: 3 / 4; object-fit: contain; background: var(--paper-3); }
 .lg-card .placeholder { aspect-ratio: 1; display: grid; place-items: center; color: var(--ink-2); font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.6rem; background: linear-gradient(160deg, var(--paper-2), var(--paper-3)); box-shadow: inset 0 0 0 1px var(--hair); }
 .lg-card .t-play { position: absolute; top: 50%; left: 50%; width: 46px; height: 46px; transform: translate(-50%, -50%); border-radius: 50%; background: color-mix(in oklab, var(--paper) 55%, transparent); border: 1px solid var(--hair); pointer-events: none; }
 .lg-card .t-play::after { content: ""; position: absolute; top: 50%; left: 54%; transform: translate(-50%, -50%); border-style: solid; border-width: 8px 0 8px 13px; border-color: transparent transparent transparent var(--gold); }

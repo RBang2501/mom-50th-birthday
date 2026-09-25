@@ -47,6 +47,7 @@ window.CONFIG = {
   // center line. Tap one to open the royal card (media on top, then a cursive
   // title + message you'll add later). type: "video" or "image".
   cuteMoments: [
+    { type: "video", src: "photos/control-majnu.mp4",  title: "Control, Majnu!",         msg: "Kuch kar bhi toh nahi sakte, hamari pyari Moyy hai." },
     { type: "video", src: "photos/cute-laugh.mp4",     title: "Hehe",                    msg: "Kar di phir koi cutu harkat." },
     { type: "image", src: "photos/cutu.jpg",           title: "Cuteness Overload",       msg: "Seat number 68, snacks haath mein. Caught red handed!" },
     { type: "video", src: "photos/golden-hour.mp4",    title: "Full Bollywood Mode",     msg: "Ek purana gaana kya baja, full filmy, full cute." },
@@ -61,7 +62,6 @@ window.CONFIG = {
     { type: "image", src: "photos/buaaaa.jpg",         title: "Pyari Bua",               msg: "Woh bua jo sabko hasati aur dhyaan rakhti hai." },
     { type: "video", src: "photos/diwali-splash.mp4",  title: "Kuch Bhi",                msg: "Nahi Nahi, Kuch Bhiiii !!!!" },
     { type: "image", src: "photos/coffee-date.jpg",    title: "Coffee Date",             msg: "Cold coffee, aur Moyy ki smile on point." },
-    { type: "video", src: "photos/control-majnu.mp4",  title: "Control, Majnu!",         msg: "Kuch kar bhi toh nahi sakte, hamari pyari Moyy hai." },
   ],
 
   // New tabs — royal-card pages (one card per entry). Add { src, title, msg }.
@@ -84,9 +84,9 @@ window.CONFIG = {
   ],
   // North & South banner (marriage chapter) — swipeable, styled like the Lekru banner.
   northSouthBanners: [
-    { src: "photos/ns-mom.jpg",     title: "One World",     msg: "The cute, innocent one, simple and straight from the heart." },
-    { src: "photos/ns-dad.jpg",     title: "Another World", msg: "The practical one, all logic and quiet discipline." },
-    { src: "photos/ns-wedding.jpg", title: "One Home",      msg: "So different in every way, and perfect together." },
+    { src: "photos/ns-mom.jpg",     title: "One World",     msg: "Seedhi, saadi aur dil se saaf, apni hi dhun mein rehne waali." },
+    { src: "photos/ns-dad.jpg",     title: "Another World", msg: "Practical, disciplined, har baat mein logic dhoondne waala." },
+    { src: "photos/ns-wedding.jpg", title: "One Home",      msg: "Do alag rang, aur unse bana pyaar ka ek khoobsurat rang." },
   ],
   // North & South photo grid — 2 per row, uniform square cards, no captions.
   northSouthPhotos: [
