@@ -4,6 +4,7 @@
 window.CONFIG = {
   // ---- The basics ----
   momName: "Mom",                    // used on the home hero + nav brand
+  brand: ["The Golden ", "Moyy"],    // top-left site title; 2nd part is gold-accented
   estYear: "1976",
   tagline: "Fifty golden years, and every one made someone's life warmer.",
   signoff: "— With all our love, your family · 2026",
@@ -46,21 +47,21 @@ window.CONFIG = {
   // center line. Tap one to open the royal card (media on top, then a cursive
   // title + message you'll add later). type: "video" or "image".
   cuteMoments: [
-    { type: "video", src: "photos/cute-laugh.mp4",     title: "Hehe",                        msg: "Kar di phir koi cutu harkat." },
-    { type: "image", src: "photos/cutu.jpg",           title: "Safar Wali Bhookh",           msg: "Seat number 68 aur haath mein snacks. Moyy ka rule: pet pehle, view baad mein." },
-    { type: "video", src: "photos/golden-hour.mp4",    title: "Full Bollywood Mode",         msg: "Purana gaana laga, kaam bhula, aur Moyy full fun mode on. Asli Bollywood cuteness." },
-    { type: "image", src: "photos/hehe.jpg",           title: "Full Family, Full Swag",      msg: "Photo ke beech bhi kaan pakadna nahi bhooli. Mastikhor Kanha ki asli Maa." },
-    { type: "video", src: "photos/batting.mp4",        title: "Helmet Aur Anarkali",         msg: "Dress se judge mat karna. Helmet pehna hai matlab chhakka pakka." },
-    { type: "image", src: "photos/air-hockey.jpg",     title: "Full Concentration Mode",     msg: "Yeh waala look aa gaya? Ab haarne ki baat hi mat karo." },
-    { type: "video", src: "photos/udta-hi-phiro.mp4",  title: "Teen Sitaare",                msg: "Saree, style aur attitude. Yeh trio aaya toh function set." },
-    { type: "image", src: "photos/murugan-aunty.jpg",  title: "Murugan Aunty",               msg: "Kasavu saree, gajra aur woh signature nazar. South ki asli aunty, full attitude." },
-    { type: "video", src: "photos/pool.mp4",           title: "Pool Champion (Almost)",      msg: "Itna time liya aim karne mein, aur phir woh cute waala foul. Jaldi khelo Moyy, Panvel nikalna hai!" },
-    { type: "image", src: "photos/little-moyy.jpg",    title: "Chhoti Si Moyy",              msg: "Beta lamba ho gaya, par boss abhi bhi Moyy hi hai." },
-    { type: "video", src: "photos/bowling.mp4",        title: "Strike Ya Gutter?",           msg: "Ball chhodi, aankhein band, aur dua. Is baar bacha le re baba!" },
-    { type: "image", src: "photos/buaaaa.jpg",         title: "Pyari Bua",                   msg: "Woh bua jo sabko hasati hai." },
-    { type: "video", src: "photos/diwali-splash.mp4",  title: "Kuch Bhi, Nahi Nahi Kuch Bhiiii !!!!", msg: "Patakhe peeche, dhamaka aage. Moyy full Diwali masti mode mein." },
-    { type: "image", src: "photos/coffee-date.jpg",    title: "Coffee Date",                 msg: "Cold coffee, aur Moyy ki smile on point." },
-    { type: "video", src: "photos/control-majnu.mp4",  title: "Control, Majnu!",             msg: "Kuch bold bhi nahi kar sakte, hamari pyaari Moyy hai." },
+    { type: "video", src: "photos/cute-laugh.mp4",     title: "Hehe",                    msg: "Kar di phir koi cutu harkat." },
+    { type: "image", src: "photos/cutu.jpg",           title: "Caught Red-Handed",       msg: "Seat number 68 aur haath mein snacks. Moyy ka rule: pet pehle, view baad mein." },
+    { type: "video", src: "photos/golden-hour.mp4",    title: "Full Bollywood Mode",     msg: "Ek purana gaana kya baja, Moyy seedha heroine mode mein. Full filmy, full cute." },
+    { type: "image", src: "photos/hehe.jpg",           title: "Mastikhor Kanha",         msg: "Kaan pakda gaya. Maiyaa, sorry sorry maiyaaa!" },
+    { type: "video", src: "photos/batting.mp4",        title: "Cricket Moyy",            msg: "Kidhar gayi ball, kidhar gayii? Are are, bacha balance!" },
+    { type: "image", src: "photos/air-hockey.jpg",     title: "Full Concentration Mode", msg: "Yeh waala look aa gaya? Ab haarne ki baat hi mat karo." },
+    { type: "video", src: "photos/udta-hi-phiro.mp4",  title: "Just Ladies Thing",       msg: "Haan, yeh karlo pehle.." },
+    { type: "image", src: "photos/murugan-aunty.jpg",  title: "Murugan Aunty",           msg: "Kasavu saree, gajra aur woh signature nazar. South ki asli aunty, full attitude." },
+    { type: "video", src: "photos/pool.mp4",           title: "Pool Champion (Almost)",  msg: "Itna time liya aim karne mein, aur phir woh cute waala foul." },
+    { type: "image", src: "photos/little-moyy.jpg",    title: "Chhoti Si Moyy",          msg: "Beta lamba ho gaya, par boss abhi bhi Moyy hi hai." },
+    { type: "video", src: "photos/bowling.mp4",        title: "Strike?",                 msg: "Ball chhodi, aankhein band, aur dua. Is baar bacha le re baba!" },
+    { type: "image", src: "photos/buaaaa.jpg",         title: "Pyari Bua",               msg: "Woh bua jo sabko hasati hai." },
+    { type: "video", src: "photos/diwali-splash.mp4",  title: "Kuch Bhi",                msg: "Nahi Nahi, Kuch Bhiiii !!!!" },
+    { type: "image", src: "photos/coffee-date.jpg",    title: "Coffee Date",             msg: "Cold coffee, aur Moyy ki smile on point." },
+    { type: "video", src: "photos/control-majnu.mp4",  title: "Control, Majnu!",         msg: "Kuch bold bhi nahi kar sakte, hamari pyaari Moyy hai." },
   ],
 
   // New tabs — royal-card pages (one card per entry). Add { src, title, msg }.

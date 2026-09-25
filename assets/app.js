@@ -63,7 +63,7 @@
       return '<a href="' + n.href + '"' + cur + '>' + esc(n.label) + (locked ? ' <span class="lock">🔒</span>' : "") + "</a>";
     }).join("");
     nav.innerHTML =
-      '<a class="brand" href="index.html"><b>50</b> · ' + esc(C.momName || "Mom") + "</a>" +
+      '<a class="brand" href="index.html">' + esc((C.brand && C.brand[0]) || "") + "<b>" + esc((C.brand && C.brand[1]) || C.momName || "Mom") + "</b></a>" +
       '<button class="nav-toggle" aria-label="Menu" aria-expanded="false">' +
       "<span></span><span></span><span></span></button>" +
       '<div class="nav-links">' + links + "</div>";
@@ -125,8 +125,13 @@
             ' data-full="' + esc(t.src) + '" data-title="' + esc(t.title || "") + '" data-msg="' + esc(t.msg || "") + '"' +
             ' aria-label="Open ' + (isVideo ? "video" : "photo") + '">' + thumb + "</button>";
         }
+        var text = (t.title || t.msg)
+          ? '<div class="t-text">' + (t.title ? '<h3 class="t-title">' + esc(t.title) + "</h3>" : "") +
+            (t.msg ? '<p class="t-body">' + esc(t.msg) + "</p>" : "") + "</div>"
+          : "";
         return '<li class="t-item reveal">' +
           '<figure class="t-photo">' + inner + "</figure>" +
+          text +
           '<span class="t-node" aria-hidden="true"></span>' +
         "</li>";
       }).join("");
@@ -525,7 +530,7 @@
         return '<span class="mars-item"><b>' + esc(c[0]) + "</b>" + esc(String(c[1]).slice(1)) + "</span>";
       }).join("");
       prizeBox.innerHTML =
-        '<div class="sc-coin" aria-hidden="true"><span>50</span></div>' +
+        '<div class="sc-coin" aria-hidden="true"><span>M</span></div>' +
         '<div class="sc-kicker">You are awarded</div>' +
         '<div class="sc-prize">' + esc(cfg.prize || "Gold") + "</div>" +
         '<p class="sc-msg">' + esc(cfg.message || "").replace(/\{\{GOLD\}\}/g, '<span class="sc-gold">GOLD</span>') + "</p>" +
@@ -562,8 +567,9 @@
       ctx.beginPath(); ctx.arc(cx, cy, r, 0, 7); ctx.fillStyle = cg; ctx.fill();
       ctx.lineWidth = Math.max(2, r * 0.12); ctx.strokeStyle = "rgba(120,85,15,0.85)"; ctx.stroke();
       ctx.fillStyle = "rgba(85,58,8,0.92)"; ctx.textBaseline = "middle";
-      ctx.font = "700 " + Math.round(r * 0.95) + "px 'Playfair Display', Georgia, serif";
-      ctx.fillText("50", cx, cy + r * 0.04);
+      ctx.font = "700 " + Math.round(r * 1.05) + "px 'Playfair Display', Georgia, serif";
+      ctx.textAlign = "center";
+      ctx.fillText("M", cx, cy);
       ctx.textBaseline = "alphabetic";
     }
     function pos(e) { var r = canvas.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
