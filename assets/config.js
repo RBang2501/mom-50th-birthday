@@ -32,8 +32,8 @@ window.CONFIG = {
   // the photo on top, a cursive title, a gold divider, then the message.
   // Placeholder text for now — replace title/msg with the real words.
   bachpanStory: [
-    { src: "photos/bachpan1.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
-    { src: "photos/bachpan2.jpg", title: "Title here", msg: "Message here — add the story behind this moment." },
+    { src: "photos/bachpan1.jpg", title: "The Baby of the Bunch", msg: "The littlest one on the right, already the star of every frame." },
+    { src: "photos/bachpan2.jpg", title: "Little Miss Sunshine",  msg: "A flower in her hair and mischief in her eyes, right at the centre of it all." },
   ],
   bachpan: [        // (unused) old album grid — childhood photos now live in bachpanStory above
     { src: "", cap: "Baby days" },
@@ -67,19 +67,19 @@ window.CONFIG = {
   // For a video card add type:"video". Leave a section empty → shows "Coming soon".
   // College Time — royal cards (same style as Lil Girl). Replace title/msg with the real words.
   collegeTime: [
-    { src: "photos/college4.jpg",  title: "Where It All Began",         msg: "Head down, dreams up — the long road to becoming a doctor starts here." },
-    { src: "photos/college5.jpg",  title: "Files, Faith & First Steps", msg: "Notes held tight, Dhanvantari watching over the future doctors." },
+    { src: "photos/college4.jpg",  title: "Where It All Began",         msg: "Head down and dreams up, the long road to becoming a doctor starts here." },
+    { src: "photos/college5.jpg",  title: "Files, Faith & First Steps", msg: "Notes held tight, with Dhanvantari watching over the future doctors." },
     { src: "photos/college6.jpg",  title: "Canteen Confessions",        msg: "Every big day deserved a little treat and a lot of gossip." },
     { src: "photos/college2.jpg",  title: "The Hostel Gang",            msg: "Between lectures, the corridor became the whole world." },
     { src: "photos/college8.jpg",  title: "Off the Beaten Path",        msg: "New roads, a borrowed hat, and not a care in the world." },
-    { src: "photos/college11.jpg", title: "A Day by the Water",         msg: "Books shut, shoes off — an afternoon stolen by the shore." },
+    { src: "photos/college11.jpg", title: "A Day by the Water",         msg: "Books shut and shoes off, an afternoon stolen by the shore." },
     { src: "photos/college9.jpg",  title: "Golden Afternoons",          msg: "Piled together in the grass, with time slowing just for them." },
-    { src: "photos/college3.jpg",  title: "Under the College Sign",     msg: "Government Ayurvedic College, Nagpur — where the story found its home." },
+    { src: "photos/college3.jpg",  title: "Under the College Sign",     msg: "Government Ayurvedic College, Nagpur, where the story found its home." },
     { src: "photos/college1.jpg",  title: "Full Filmy Mode",            msg: "Four friends, one filmy pose, and a whole lot of joy." },
     { src: "photos/college7.jpg",  title: "The Whole Batch",            msg: "The girls who turned classmates into family." },
-    { src: "photos/college10.jpg", title: "Dressed to the Nines",       msg: "Saris pressed, best smiles on — one for the frame." },
-    { src: "photos/college12.jpg", title: "The White Coats",            msg: "Aprons on, stethoscopes ready — the dream in uniform at last." },
-    { src: "photos/college14.jpg", title: "Till We Meet Again",         msg: "The last frame of a golden chapter — friends, forever." },
+    { src: "photos/college10.jpg", title: "Dressed to the Nines",       msg: "Saris pressed and best smiles on, all ready for the frame." },
+    { src: "photos/college12.jpg", title: "The White Coats",            msg: "Aprons on and stethoscopes ready, the dream in uniform at last." },
+    { src: "photos/college14.jpg", title: "Till We Meet Again",         msg: "The last frame of a golden chapter, friends forever." },
   ],
   northSouth: [],    // North & South (the marriage chapter)
   friends: [],       // Friends
@@ -91,7 +91,7 @@ window.CONFIG = {
     scratchLabel: "Scratch to reveal your gift",
     prizeEmoji: "🪙",
     prize: "A Gold Set",
-    message: "For being the most amazing person and completing your cute little 50 years — you are hereby awarded a set of pure gold, by the Council of the MARS Family. 💛",
+    message: "For being the most amazing person and completing your cute little 50 years, you are hereby awarded a set of pure gold by the Council of the MARS Family. 💛",
     council: [ ["M", "Manisha"], ["A", "Ashrit"], ["R", "Rakshit"], ["S", "Sanjay"] ],
   },
 
