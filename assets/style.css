@@ -415,6 +415,11 @@ body.lb-open { overflow: hidden; }
 .sc-emoji { font-size: clamp(2.8rem, 12vw, 4.2rem); line-height: 1; }
 .sc-kicker { font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.3em; font-size: 0.66rem; color: var(--ink-2); }
 .sc-prize { font-family: var(--display); font-weight: 700; font-size: clamp(2rem, 9vw, 3rem); line-height: 1; background: linear-gradient(100deg, var(--gold-deep), var(--gold-2) 50%, var(--gold-deep)); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.3rem; }
+.sc-gold { font-weight: 800; font-style: normal; letter-spacing: 0.03em; background: linear-gradient(100deg, var(--gold-deep) 0%, var(--gold) 28%, oklch(0.99 0.05 95) 50%, var(--gold) 72%, var(--gold-deep) 100%); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 2.8s linear infinite; }
+.sc-coin { position: relative; overflow: hidden; width: 88px; height: 88px; margin: 0 auto 0.35rem; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 34% 30%, oklch(0.99 0.06 95), var(--gold) 46%, var(--gold-deep) 80%, oklch(0.52 0.10 78)); box-shadow: 0 8px 20px oklch(0.10 0.02 20 / .5), inset 0 0 0 3px oklch(0.78 0.12 84 / .85), inset 0 2px 7px oklch(0.99 0.07 95 / .7); }
+.sc-coin span { font-family: var(--display); font-weight: 800; font-size: 2rem; color: oklch(0.46 0.09 72); text-shadow: 0 1px 0 oklch(0.99 0.07 95 / .55); }
+.sc-coin::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 42%, oklch(1 0 0 / .6) 50%, transparent 58%); background-size: 250% 250%; animation: shimmer 2.8s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .sc-gold { animation: none; } .sc-coin::after { animation: none; } }
 .sc-msg { color: var(--ink-2); font-style: italic; font-size: 0.98rem; line-height: 1.42; margin: 0.2rem 0 0.6rem; max-width: 30ch; }
 .sc-council-title { font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.62rem; color: var(--gold-deep); margin-top: 0.2rem; }
 .scratch-cover { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: grab; transition: opacity .5s ease; }

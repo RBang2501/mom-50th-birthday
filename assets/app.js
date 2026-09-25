@@ -525,10 +525,10 @@
         return '<span class="mars-item"><b>' + esc(c[0]) + "</b>" + esc(String(c[1]).slice(1)) + "</span>";
       }).join("");
       prizeBox.innerHTML =
-        '<div class="sc-emoji">' + esc(cfg.prizeEmoji || "🪙") + "</div>" +
+        '<div class="sc-coin" aria-hidden="true"><span>50</span></div>' +
         '<div class="sc-kicker">You are awarded</div>' +
         '<div class="sc-prize">' + esc(cfg.prize || "Gold") + "</div>" +
-        '<p class="sc-msg">' + esc(cfg.message || "") + "</p>" +
+        '<p class="sc-msg">' + esc(cfg.message || "").replace(/\{\{GOLD\}\}/g, '<span class="sc-gold">GOLD</span>') + "</p>" +
         (council ? '<div class="sc-council-title">Council of the MARS Family</div><div class="mars-names">' + council + "</div>" : "");
     }
 
@@ -555,8 +555,16 @@
       ctx.font = "italic " + Math.round(Math.min(w, h) * 0.052) + "px 'Cormorant Garamond', Georgia, serif";
       ctx.fillText(cfg.scratchLabel || "Scratch to reveal your gift", w / 2, h * 0.54);
       // little coin hint
-      ctx.font = Math.round(Math.min(w, h) * 0.11) + "px serif";
-      ctx.fillText("🪙", w / 2, h * 0.68);
+      // gold coin
+      var cx = w / 2, cy = h * 0.70, r = Math.min(w, h) * 0.085;
+      var cg = ctx.createRadialGradient(cx - r * 0.3, cy - r * 0.3, r * 0.2, cx, cy, r);
+      cg.addColorStop(0, "#fff2c2"); cg.addColorStop(0.5, "#e8c25a"); cg.addColorStop(1, "#9c7620");
+      ctx.beginPath(); ctx.arc(cx, cy, r, 0, 7); ctx.fillStyle = cg; ctx.fill();
+      ctx.lineWidth = Math.max(2, r * 0.12); ctx.strokeStyle = "rgba(120,85,15,0.85)"; ctx.stroke();
+      ctx.fillStyle = "rgba(85,58,8,0.92)"; ctx.textBaseline = "middle";
+      ctx.font = "700 " + Math.round(r * 0.95) + "px 'Playfair Display', Georgia, serif";
+      ctx.fillText("50", cx, cy + r * 0.04);
+      ctx.textBaseline = "alphabetic";
     }
     function pos(e) { var r = canvas.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
     function scratch(p) {
