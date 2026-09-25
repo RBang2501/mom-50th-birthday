@@ -289,8 +289,14 @@
                      .filter(function (it) { return it && it.src; });
       if (!items.length) { box.innerHTML = '<div class="banner-ph">Add banner photos</div>'; return; }
       var slides = items.map(function (it) {
-        return '<figure class="banner-slide"><button type="button" class="t-open" data-kind="image" data-full="' + esc(it.src) +
-          '" data-title="' + esc(it.cap || "") + '" aria-label="Open photo"><img src="' + esc(it.src) + '" alt="' + esc(it.cap || "") + '" loading="lazy" /></button></figure>';
+        var cap = (it.title || it.msg)
+          ? '<figcaption class="banner-cap">' +
+              (it.title ? '<h3 class="banner-title">' + esc(it.title) + "</h3>" : "") +
+              (it.title && it.msg ? '<span class="banner-rule" aria-hidden="true"></span>' : "") +
+              (it.msg ? '<p class="banner-msg">' + esc(it.msg) + "</p>" : "") +
+            "</figcaption>"
+          : "";
+        return '<figure class="banner-slide"><img src="' + esc(it.src) + '" alt="' + esc(it.title || "") + '" loading="lazy" />' + cap + "</figure>";
       }).join("");
       box.innerHTML = '<div class="banner-track">' + slides + "</div>" + (items.length > 1 ? '<div class="banner-dots"></div>' : "");
       if (items.length <= 1) return;

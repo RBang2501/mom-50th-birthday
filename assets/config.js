@@ -104,10 +104,8 @@ window.CONFIG = {
 
   // Lekru page banners — full-width & swipeable at the top. Add 3–4 photo paths.
   lekruBanners: [
-    "photos/LekruBanner1.jpg",
-    "photos/LekruBanner2.png",
-    // "photos/LekruBanner3.jpg",
-    // "photos/LekruBanner4.jpg",
+    { src: "photos/LekruBanner1.jpg", title: "The Innocent Trio", msg: "One mumma and her two lekrus, the whole world in a single frame." },
+    { src: "photos/LekruBanner2.png", title: "The Two Cutus",     msg: "Rakshit and Ashrit, brothers first and partners in every bit of mischief." },
   ],
   // Small photo cards, 2 per row. First 4 show; the rest hide behind "See more".
   // Tap a card to open it big (title + message optional). For video add type:"video".
