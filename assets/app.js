@@ -77,7 +77,7 @@
   function injectFooter() {
     var f = document.createElement("footer");
     f.className = "foot";
-    f.innerHTML = "<p>Made with <span class='heart'>&hearts;</span> for the best mom in the world.</p>";
+    f.innerHTML = "<p>Made with <span class='heart'>&hearts;</span> for the best Moyy in the world.</p>";
     document.body.appendChild(f);
   }
 

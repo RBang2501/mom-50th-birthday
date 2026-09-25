@@ -459,6 +459,8 @@ body[data-page="north-south"] .lg-card img { aspect-ratio: 3 / 4; object-fit: co
 
 /* ---------- Home photo showcase (framed portraits) ---------- */
 .photo-showcase { display: grid; grid-template-columns: 1fr; gap: 1.2rem; max-width: 600px; margin: 1.8rem auto 0; }
+body[data-page="home"] #showcase { padding-bottom: 0.8rem; }
+body[data-page="home"] .foot { margin-top: 0.6rem; }
 @media (min-width: 620px) { .photo-showcase { grid-template-columns: 1fr 1fr; } }
 .showcase-photo { position: relative; margin: 0; border-radius: 18px; overflow: hidden; border: 1px solid var(--hair); box-shadow: var(--shadow); background: var(--paper-2); transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease; }
 .showcase-photo:hover { transform: translateY(-4px); box-shadow: 0 26px 52px -22px oklch(0.08 0.03 350 / .85); }
