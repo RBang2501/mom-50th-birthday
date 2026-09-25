@@ -33,6 +33,8 @@
     renderCardStacks();
     renderGalleries();
     renderCarousels();
+    renderBanners();
+    renderGrid();
     renderWishes();
     setupLightbox();
     setupCake();
@@ -275,6 +277,55 @@
       track.addEventListener("scroll", function () {
         cancelAnimationFrame(raf);
         raf = requestAnimationFrame(function () { var i = current(); dots.forEach(function (d, j) { d.classList.toggle("on", j === i); }); });
+      });
+    });
+  }
+
+  /* ---------- Lekru banners (full-width, swipeable) ---------- */
+  function renderBanners() {
+    $$("[data-banners]").forEach(function (box) {
+      var raw = C[box.getAttribute("data-banners")] || [];
+      var items = raw.map(function (it) { return typeof it === "string" ? { src: it } : it; })
+                     .filter(function (it) { return it && it.src; });
+      if (!items.length) { box.innerHTML = '<div class="banner-ph">Add banner photos</div>'; return; }
+      var slides = items.map(function (it) {
+        return '<figure class="banner-slide"><button type="button" class="t-open" data-kind="image" data-full="' + esc(it.src) +
+          '" data-title="' + esc(it.cap || "") + '" aria-label="Open photo"><img src="' + esc(it.src) + '" alt="' + esc(it.cap || "") + '" loading="lazy" /></button></figure>';
+      }).join("");
+      box.innerHTML = '<div class="banner-track">' + slides + "</div>" + (items.length > 1 ? '<div class="banner-dots"></div>' : "");
+      if (items.length <= 1) return;
+      var track = box.querySelector(".banner-track");
+      var slidesEls = Array.prototype.slice.call(track.children);
+      var dotsBox = box.querySelector(".banner-dots");
+      dotsBox.innerHTML = slidesEls.map(function (_, i) { return '<button class="dot' + (i === 0 ? " on" : "") + '" type="button" aria-label="Banner ' + (i + 1) + '"></button>'; }).join("");
+      var dots = Array.prototype.slice.call(dotsBox.children);
+      function cur() { var mid = track.scrollLeft + track.clientWidth / 2, b = 0, bd = Infinity; slidesEls.forEach(function (s, i) { var d = Math.abs(s.offsetLeft + s.offsetWidth / 2 - mid); if (d < bd) { bd = d; b = i; } }); return b; }
+      dots.forEach(function (d, i) { d.addEventListener("click", function () { var s = slidesEls[i]; track.scrollTo({ left: s.offsetLeft, behavior: reduce ? "auto" : "smooth" }); }); });
+      var raf; track.addEventListener("scroll", function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(function () { var i = cur(); dots.forEach(function (d, j) { d.classList.toggle("on", j === i); }); }); });
+    });
+  }
+
+  /* ---------- Lekru photo grid (2 per row + See more) ---------- */
+  function renderGrid() {
+    $$("[data-grid]").forEach(function (box) {
+      var items = C[box.getAttribute("data-grid")] || [];
+      var LIMIT = 4;
+      var cards = items.map(function (p, i) {
+        var extra = i >= LIMIT ? " is-extra" : "";
+        if (!p.src) return '<figure class="lg-card' + extra + '"><div class="placeholder">Add photo</div></figure>';
+        var isVideo = p.type === "video" || /\.(mp4|mov|webm|m4v)(\?|#|$)/i.test(p.src);
+        var thumb = isVideo
+          ? '<video src="' + esc(p.src) + '#t=0.1" muted playsinline preload="metadata"></video><span class="t-play" aria-hidden="true"></span>'
+          : '<img src="' + esc(p.src) + '" alt="' + esc(p.title || "") + '" loading="lazy" />';
+        return '<figure class="lg-card' + extra + '"><button type="button" class="t-open" data-kind="' + (isVideo ? "video" : "image") +
+          '" data-full="' + esc(p.src) + '" data-title="' + esc(p.title || "") + '" data-msg="' + esc(p.msg || "") + '" aria-label="Open">' + thumb + "</button></figure>";
+      }).join("");
+      var more = items.length > LIMIT ? '<div class="see-more-wrap"><button class="btn ghost see-more" type="button" data-more>See more</button></div>' : "";
+      box.innerHTML = '<div class="lg-cards">' + cards + "</div>" + more;
+      var moreBtn = box.querySelector("[data-more]");
+      if (moreBtn) moreBtn.addEventListener("click", function () {
+        var expanded = box.classList.toggle("grid-expanded");
+        moreBtn.textContent = expanded ? "See less" : "See more";
       });
     });
   }

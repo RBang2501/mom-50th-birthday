@@ -375,6 +375,32 @@ body.lb-open { overflow: hidden; }
 .wish-card::before { content: "\201C"; position: absolute; top: -.1rem; right: 1rem; font-family: var(--display); font-size: 3.4rem; color: color-mix(in oklab, var(--gold) 45%, transparent); }
 
 /* ---------- Best Lekru game ---------- */
+/* ---------- Lekru: banners + photo grid ---------- */
+.lekru-banners { position: relative; margin-top: 1.5rem; }
+.banner-track { display: flex; gap: 0.8rem; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 0.3rem; }
+.banner-track::-webkit-scrollbar { display: none; }
+.banner-slide { flex: 0 0 100%; scroll-snap-align: center; margin: 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--hair); box-shadow: var(--shadow); }
+.banner-slide .t-open { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; }
+.banner-slide img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
+.banner-ph { border-radius: 16px; border: 1px dashed var(--hair); aspect-ratio: 3/2; display: grid; place-items: center; color: var(--ink-2); font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.22em; font-size: 0.72rem; background: linear-gradient(160deg, var(--paper-2), var(--paper-3)); }
+.banner-dots { display: flex; gap: 0.5rem; justify-content: center; margin-top: 0.8rem; }
+.banner-dots .dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; background: color-mix(in oklab, var(--gold) 35%, var(--mute)); cursor: pointer; transition: transform .2s, background .2s; -webkit-tap-highlight-color: transparent; }
+.banner-dots .dot.on { background: var(--gold-deep); transform: scale(1.3); }
+
+.lekru-grid { margin-top: 2rem; }
+.lg-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+@media (min-width: 640px) { .lg-cards { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 940px) { .lg-cards { grid-template-columns: repeat(4, 1fr); } }
+.lg-card { position: relative; margin: 0; border-radius: 12px; overflow: hidden; background: var(--paper-2); border: 1px solid var(--hair); box-shadow: 0 6px 16px oklch(0.1 0.03 350 / .4); }
+.lg-card .t-open { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; position: relative; -webkit-tap-highlight-color: transparent; }
+.lg-card img, .lg-card video { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+.lg-card .placeholder { aspect-ratio: 1; display: grid; place-items: center; color: var(--ink-2); font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.6rem; background: linear-gradient(160deg, var(--paper-2), var(--paper-3)); box-shadow: inset 0 0 0 1px var(--hair); }
+.lg-card .t-play { position: absolute; top: 50%; left: 50%; width: 46px; height: 46px; transform: translate(-50%, -50%); border-radius: 50%; background: color-mix(in oklab, var(--paper) 55%, transparent); border: 1px solid var(--hair); pointer-events: none; }
+.lg-card .t-play::after { content: ""; position: absolute; top: 50%; left: 54%; transform: translate(-50%, -50%); border-style: solid; border-width: 8px 0 8px 13px; border-color: transparent transparent transparent var(--gold); }
+.lg-card.is-extra { display: none; }
+.grid-expanded .lg-card.is-extra { display: block; animation: pop-in .4s ease both; }
+.see-more-wrap { text-align: center; margin-top: 1.1rem; }
+
 .game { position: relative; margin-top: 3rem; background: radial-gradient(120% 100% at 50% 0, var(--paper-2), var(--paper)); border: 1px solid color-mix(in oklab, var(--gold) 45%, transparent); border-radius: 18px; padding: clamp(1.4rem, 5vw, 2.6rem) clamp(1rem, 4vw, 2rem); overflow: hidden; }
 .arena.gone { display: none; }
 .reveal-cta { text-align: center; margin-top: 1.1rem; }

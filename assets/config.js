@@ -65,7 +65,24 @@ window.CONFIG = {
 
   // New tabs — royal-card pages (one card per entry). Add { src, title, msg }.
   // For a video card add type:"video". Leave a section empty → shows "Coming soon".
-  collegeTime: [],   // College Time
+  // College Time — tap a photo to open it big. Add title/msg to any entry for a caption.
+  collegeTime: [
+    { type: "image", src: "photos/college1.jpg" },
+    { type: "image", src: "photos/college2.jpg" },
+    { type: "image", src: "photos/college3.jpg" },
+    { type: "image", src: "photos/college4.jpg" },
+    { type: "image", src: "photos/college5.jpg" },
+    { type: "image", src: "photos/college6.jpg" },
+    { type: "image", src: "photos/college7.jpg" },
+    { type: "image", src: "photos/college8.jpg" },
+    { type: "image", src: "photos/college9.jpg" },
+    { type: "image", src: "photos/college10.jpg" },
+    { type: "image", src: "photos/college11.jpg" },
+    { type: "image", src: "photos/college12.jpg" },
+    { type: "image", src: "photos/college13.jpg" },
+    { type: "image", src: "photos/college14.jpg" },
+    { type: "image", src: "photos/college15.png" },
+  ],
   northSouth: [],    // North & South (the marriage chapter)
   friends: [],       // Friends
   gift: [],          // Gift
@@ -77,13 +94,20 @@ window.CONFIG = {
     { src: "", cap: "Sunday lunch" },
   ],
 
-  // Photo cards — one per screen on mobile. Add your photo + your message.
-  // (Add or remove card slots as you like.)
+  // Lekru page banners — full-width & swipeable at the top. Add 3–4 photo paths.
+  lekruBanners: [
+    "photos/LekruBanner1.jpg",
+    // "photos/LekruBanner2.jpg",
+    // "photos/LekruBanner3.jpg",
+    // "photos/LekruBanner4.jpg",
+  ],
+  // Small photo cards, 2 per row. First 4 show; the rest hide behind "See more".
+  // Tap a card to open it big (title + message optional). For video add type:"video".
   lekrus: [
-    { src: "", msg: "" },
-    { src: "", msg: "" },
-    { src: "", msg: "" },
-    { src: "", msg: "" },
+    { src: "", title: "", msg: "" },
+    { src: "", title: "", msg: "" },
+    { src: "", title: "", msg: "" },
+    { src: "", title: "", msg: "" },
   ],
 
   // The "Best Lekru" game — best gets the party, other's button runs away 😜
