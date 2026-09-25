@@ -319,13 +319,14 @@ body.lb-open { overflow: hidden; }
 /* ---------- Cake (home fun) ---------- */
 .cake-stage { display: grid; place-items: center; gap: 1.2rem; }
 .cake { --w: min(300px, 82vw); width: var(--w); position: relative; filter: drop-shadow(0 16px 20px oklch(0.4 0.05 60 / .2)); }
-.candles { position: absolute; top: -6%; left: 0; right: 0; display: flex; justify-content: center; gap: 3.2%; flex-wrap: wrap; padding: 0 8%; }
-.candle { width: 5px; height: 40px; background: linear-gradient(oklch(0.72 0.09 25), oklch(0.9 0.04 60)); border-radius: 2px; position: relative; }
-.flame { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); width: 9px; height: 14px; background: radial-gradient(circle at 50% 70%, oklch(0.98 0.14 95), var(--gold) 55%, transparent 75%); border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; transform-origin: bottom center; animation: flicker .35s ease-in-out infinite alternate; }
-@keyframes flicker { from { transform: translateX(-50%) scale(1) rotate(-3deg); opacity: .9;} to { transform: translateX(-50%) scale(1.12) rotate(3deg); opacity: 1;} }
+.candles { position: absolute; left: 0; right: 0; bottom: 60%; display: flex; justify-content: center; align-items: flex-end; gap: 13px; pointer-events: none; z-index: 2; }
+.candle { width: 6px; height: 34px; border-radius: 3px; position: relative; background: repeating-linear-gradient(45deg, oklch(0.96 0.03 20) 0 4px, oklch(0.70 0.13 18) 4px 8px); box-shadow: 0 1px 3px oklch(0.1 0 0 / .4); }
+.candle::before { content: ""; position: absolute; top: -3px; left: 50%; transform: translateX(-50%); width: 1.5px; height: 4px; background: oklch(0.32 0.02 60); border-radius: 1px; }
+.flame { position: absolute; top: -17px; left: 50%; transform: translateX(-50%); width: 11px; height: 17px; border-radius: 50% 50% 50% 50% / 60% 60% 42% 42%; transform-origin: bottom center; background: radial-gradient(ellipse at 50% 72%, oklch(0.99 0.05 95) 0%, var(--gold) 42%, oklch(0.62 0.19 40) 82%, transparent 100%); box-shadow: 0 -2px 16px 5px oklch(0.85 0.16 82 / .55); animation: flicker .4s ease-in-out infinite alternate; }
+@keyframes flicker { from { transform: translateX(-50%) scale(1) rotate(-3deg); opacity: .92; } to { transform: translateX(-50%) scale(1.14) rotate(3deg); opacity: 1; } }
 .candle.out .flame { display: none; }
-.candle.out::after { content: ""; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 3px; height: 18px; border-radius: 3px; background: linear-gradient(oklch(0.6 0 0 / .5), transparent); animation: smoke 1.6s ease-out forwards; }
-@keyframes smoke { to { opacity: 0; transform: translateX(-50%) translateY(-16px);} }
+.candle.out::after { content: ""; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 3px; height: 18px; border-radius: 3px; background: linear-gradient(oklch(0.7 0 0 / .5), transparent); animation: smoke 1.6s ease-out forwards; }
+@keyframes smoke { to { opacity: 0; transform: translateX(-50%) translateY(-18px); } }
 .cake-msg { max-width: 40ch; text-align: center; opacity: 0; transform: translateY(10px) scale(.98); transition: opacity 1s ease, transform 1s ease; }
 .cake-msg.show { opacity: 1; transform: none; }
 .cake-msg .big { font-family: var(--script); font-size: clamp(2rem, 9vw, 3rem); color: var(--gold-deep); }

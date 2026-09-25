@@ -82,7 +82,12 @@ window.CONFIG = {
     { src: "photos/college12.jpg", title: "The White Coats",            msg: "Aprons on and stethoscopes ready, the dream in uniform at last." },
     { src: "photos/college14.jpg", title: "Till We Meet Again",         msg: "The last frame of a golden chapter, friends forever." },
   ],
-  northSouth: [],    // North & South (the marriage chapter)
+  // North & South banner (marriage chapter) — swipeable, styled like the Lekru banner.
+  northSouthBanners: [
+    { src: "photos/ns-mom.jpg",     title: "The South",            msg: "The girl from the South, all grace and quiet strength." },
+    { src: "photos/ns-dad.jpg",     title: "The North",            msg: "The boy from the North, about to meet his match." },
+    { src: "photos/ns-wedding.jpg", title: "When North Met South", msg: "Two worlds, one wedding, and the start of the MARS family." },
+  ],
   gift: [],          // (legacy, unused)
 
   // Gift page — scratch off the gold cover to reveal the gift underneath.

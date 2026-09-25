@@ -590,14 +590,14 @@
   /* ---------- Cake ---------- */
   function setupCake() {
     var wrap = $("#candles"); if (!wrap) return;
-    for (var i = 0; i < 22; i++) { var c = document.createElement("div"); c.className = "candle"; c.innerHTML = '<div class="flame"></div>'; wrap.appendChild(c); }
+    for (var i = 0; i < 5; i++) { var c = document.createElement("div"); c.className = "candle"; c.innerHTML = '<div class="flame"></div>'; wrap.appendChild(c); }
     var btn = $("#blow-btn"), msg = $("#cake-msg"), blown = false;
     if (!btn) return;
     btn.addEventListener("click", function () {
       var candles = $$(".candle");
       if (blown) { candles.forEach(function (c) { c.classList.remove("out"); }); if (msg) msg.classList.remove("show"); btn.textContent = "Blow out the candles"; blown = false; return; }
-      candles.forEach(function (c, i) { setTimeout(function () { c.classList.add("out"); }, reduce ? 0 : i * 45); });
-      setTimeout(function () { if (msg) msg.classList.add("show"); fireConfetti(); }, reduce ? 0 : candles.length * 45 + 150);
+      candles.forEach(function (c, i) { setTimeout(function () { c.classList.add("out"); }, reduce ? 0 : i * 130); });
+      setTimeout(function () { if (msg) msg.classList.add("show"); fireConfetti(); }, reduce ? 0 : candles.length * 130 + 200);
       btn.textContent = "Relight & wish again"; blown = true;
     });
   }
