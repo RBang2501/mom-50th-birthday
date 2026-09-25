@@ -377,11 +377,11 @@ body.lb-open { overflow: hidden; }
 /* ---------- Best Lekru game ---------- */
 /* ---------- Lekru: banners + photo grid ---------- */
 .lekru-banners { position: relative; margin-top: 1.5rem; }
-.banner-track { display: flex; gap: 0.8rem; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 0.3rem; }
+.banner-track { display: flex; align-items: flex-start; gap: 0.8rem; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 0.3rem; }
 .banner-track::-webkit-scrollbar { display: none; }
-.banner-slide { flex: 0 0 100%; scroll-snap-align: center; margin: 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--hair); box-shadow: var(--shadow); }
+.banner-slide { flex: 0 0 100%; scroll-snap-align: center; margin: 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--hair); box-shadow: var(--shadow); background: #0d0a0c; }
 .banner-slide .t-open { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; }
-.banner-slide img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
+.banner-slide img { width: 100%; height: auto; max-height: 82svh; object-fit: contain; display: block; margin: 0 auto; }
 .banner-ph { border-radius: 16px; border: 1px dashed var(--hair); aspect-ratio: 3/2; display: grid; place-items: center; color: var(--ink-2); font-family: var(--smallcaps); text-transform: uppercase; letter-spacing: 0.22em; font-size: 0.72rem; background: linear-gradient(160deg, var(--paper-2), var(--paper-3)); }
 .banner-dots { display: flex; gap: 0.5rem; justify-content: center; margin-top: 0.8rem; }
 .banner-dots .dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; background: color-mix(in oklab, var(--gold) 35%, var(--mute)); cursor: pointer; transition: transform .2s, background .2s; -webkit-tap-highlight-color: transparent; }
